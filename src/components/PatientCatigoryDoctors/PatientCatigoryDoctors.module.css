@@ -1,0 +1,27 @@
+.DocCatCard {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .DocCatCard:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .profileIcon {
+    color: #007bff;
+  }
+  
+  .loveIcon {
+    color: #e74c3c;
+    font-size: 1.5em;
+  }
+  
+  .chevronIcon {
+    font-size: 1.2em;
+    color: #333;
+  }
+  

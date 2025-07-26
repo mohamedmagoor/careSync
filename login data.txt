@@ -1,0 +1,11 @@
+1-patient
+   -national: 30125511655053
+   -pass: StrongPassword123
+   -national: 30103056897845
+   -pass: StrongPassword123
+2-doctor
+    -national: 12345678901234
+   -pass: StrongPassword123
+3-pharmacist 
+  -national: 23456789012345
+  -pass:  StrongPassword123

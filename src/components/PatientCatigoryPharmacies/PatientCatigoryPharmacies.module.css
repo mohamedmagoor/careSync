@@ -1,0 +1,25 @@
+.profile-icon {
+    color: #007bff;
+  }
+  
+  .card {
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .card:hover {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .expanded-card .card-body {
+    background-color: #f8f9fa;
+  }
+  
+  .love {
+    color: red;
+  }
+  
+  .toggle-icon {
+    font-size: 1.5em;
+  }
+  
