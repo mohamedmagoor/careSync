@@ -22,6 +22,7 @@ import PatientCatigoryPharmacies from "./components/PatientCatigoryPharmacies/Pa
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import DoctorShowHistory from "./components/DoctorShowHistory/DoctorShowHistory";
 import DoctorProfile from "./components/DoctorProfile/DoctorProfile";
+import AppointmentBooking from "./components/AppointmentBooking/AppointmentBooking";
 function App() {
   const routers = createBrowserRouter([
     { index: true, path: "splash", element: <SplashScreen /> },
@@ -90,6 +91,14 @@ function App() {
         {
           path: "patientCatigoryPharmacies",
           element: <PatientCatigoryPharmacies />,
+        },
+        {
+          path: "appointments",
+          element: (
+            <ProtectedRoute>
+              <AppointmentBooking />
+            </ProtectedRoute>
+          ),
         },
         { path: "forgotPassword", element: <ForgetPassword /> },
         { path: "otp", element: <Otp /> },

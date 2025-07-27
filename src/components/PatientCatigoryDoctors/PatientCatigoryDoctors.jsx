@@ -21,7 +21,7 @@ export default function PatientCatigoryDoctors() {
   const getCategory = () => {
     axios
       .get(
-        "https://grackle-notable-hardly.ngrok-free.app/api/doctors-categories/",
+        "http://127.0.0.1:8000/api/doctors-categories/",
         {
           headers: {
             "ngrok-skip-browser-warning": "true",

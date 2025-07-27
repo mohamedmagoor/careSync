@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import {
   FaUser,
@@ -26,24 +26,33 @@ const Profile = () => {
   useEffect(() => {
     const fetchPatientProfile = async () => {
       try {
-        const response = await axios.get(
-          "https://grackle-notable-hardly.ngrok-free.app/api/profile/",
-          {
-            headers: {
-              "ngrok-skip-browser-warning": "true",
-              Authorization: `Bearer ${userToken}`,
-            },
-          }
-        );
+        const response = await axios.get("http://localhost:8000/api/profile/", {
+          headers: {
+            "ngrok-skip-browser-warning": "true",
+            Authorization: `Bearer ${userToken}`,
+          },
+        });
         setProfile(response.data);
         setLoading(false);
       } catch (err) {
+        console.error("Profile fetch error:", err);
+        if (err.response && err.response.status === 401) {
+          // Token is invalid, redirect to login
+          setUserToken(null);
+          localStorage.removeItem("userToken");
+        }
         setError(err);
         setLoading(false);
       }
     };
-    fetchPatientProfile();
-  }, []);
+
+    if (userToken) {
+      fetchPatientProfile();
+    } else {
+      setLoading(false);
+      setError({ message: "No authentication token found" });
+    }
+  }, [userToken, setUserToken]);
 
   if (loading) return <Loading />;
 
@@ -61,84 +70,137 @@ const Profile = () => {
         <meta name="description" content="easy care Patient Home" />
       </Helmet>
       <div className="profile-container">
-        <img src={image} alt="Doctor" className="profile-photo" />
-        <h1 className="profile-header">Patient Information</h1>
+        <div className="dashboard-header">
+          <img src={image} alt="Patient" className="profile-photo" />
+          <div className="welcome-section">
+            <h1 className="profile-header">Patient Dashboard</h1>
+            {profile && (
+              <p className="welcome-text">Welcome back, {profile.full_name}!</p>
+            )}
+          </div>
+        </div>
+
+        <div className="dashboard-actions">
+          <Link to="/appointments" className="dashboard-card action-card">
+            <div className="card-icon">📅</div>
+            <h3>Book Appointment</h3>
+            <p>Schedule your next visit with a doctor</p>
+          </Link>
+
+          <Link
+            to="/patientCategoryDoctors"
+            className="dashboard-card action-card"
+          >
+            <div className="card-icon">👨‍⚕️</div>
+            <h3>Find Doctors</h3>
+            <p>Browse our network of qualified physicians</p>
+          </Link>
+
+          <Link
+            to="/patientCatigoryPharmacies"
+            className="dashboard-card action-card"
+          >
+            <div className="card-icon">💊</div>
+            <h3>Find Pharmacies</h3>
+            <p>Locate nearby pharmacies for your prescriptions</p>
+          </Link>
+        </div>
+
         {profile && (
-          <div className="profile-cards">
-            <div className="profile-card">
-              <FaUser className="profile-icon" />
-              <p>
-                <strong>Full Name:</strong> {profile.full_name}
-              </p>
-            </div>
-            <div className="profile-card">
-              <FaAddressBook className="profile-icon" />
-              <p>
-                <strong>Address:</strong> {profile.address}
-              </p>
-            </div>
-            <div className="profile-card">
-              <FaBirthdayCake className="profile-icon" />
-              <p>
-                <strong>Birthday:</strong> {profile.birthday}
-              </p>
-            </div>
-            <div className="profile-card">
-              <FaPhone className="profile-icon" />
-              <p>
-                <strong>Phone Number:</strong> {profile.phone_number}
-              </p>
-            </div>
-            <div className="profile-card">
-              <FaEnvelope className="profile-icon" />
-              <p>
-                <strong>Email:</strong> {profile.email}
-              </p>
-            </div>
-            <div className="profile-card">
-              <FaGenderless className="profile-icon" />
-              <p>
-                <strong>Gender:</strong> {profile.gender}
-              </p>
-            </div>
-            <div className="profile-card">
-              <FaClinicMedical className="profile-icon" />
-              <p>
-                <strong>User Type:</strong> {profile.user_type}
-              </p>
-            </div>
-            <div className="profile-card">
-              <FaNotesMedical className="profile-icon" />
-              <p>
-                <strong>Diabetes:</strong> {profile.diabetes ? "Yes" : "No"}
-              </p>
-            </div>
-            <div className="profile-card">
-              <FaNotesMedical className="profile-icon" />
-              <p>
-                <strong>Heart Disease:</strong>{" "}
-                {profile.heart_disease ? "Yes" : "No"}
-              </p>
-            </div>
-            <div className="profile-card">
-              <FaNotesMedical className="profile-icon" />
-              <p>
-                <strong>Allergies:</strong>{" "}
-                {Array.isArray(profile.allergies)
-                  ? profile.allergies.length > 0
-                    ? profile.allergies.join(", ")
-                    : "None"
-                  : profile.allergies
-                  ? profile.allergies
-                  : "None"}
-              </p>
-            </div>
-            <div className="profile-card">
-              <FaNotesMedical className="profile-icon" />
-              <p>
-                <strong>Other Diseases:</strong>{" "}
-                {profile.other_diseases || "None"}
-              </p>
+          <div className="profile-section">
+            <h2 className="section-title">Your Profile Information</h2>
+            <div className="profile-cards">
+              <div className="profile-card">
+                <FaUser className="profile-icon" />
+                <p>
+                  <strong>Full Name</strong>
+                  <span className="value">{profile.full_name}</span>
+                </p>
+              </div>
+              <div className="profile-card">
+                <FaAddressBook className="profile-icon" />
+                <p>
+                  <strong>Address</strong>
+                  <span className="value">{profile.address}</span>
+                </p>
+              </div>
+              <div className="profile-card">
+                <FaBirthdayCake className="profile-icon" />
+                <p>
+                  <strong>Birthday</strong>
+                  <span className="value">{profile.birthday}</span>
+                </p>
+              </div>
+              <div className="profile-card">
+                <FaPhone className="profile-icon" />
+                <p>
+                  <strong>Phone Number</strong>
+                  <span className="value">{profile.phone_number}</span>
+                </p>
+              </div>
+              <div className="profile-card">
+                <FaEnvelope className="profile-icon" />
+                <p>
+                  <strong>Email</strong>
+                  <span className="value">{profile.email}</span>
+                </p>
+              </div>
+              <div className="profile-card">
+                <FaGenderless className="profile-icon" />
+                <p>
+                  <strong>Gender</strong>
+                  <span className="value">{profile.gender}</span>
+                </p>
+              </div>
+              <div className="profile-card">
+                <FaClinicMedical className="profile-icon" />
+                <p>
+                  <strong>User Type</strong>
+                  <span className="value">{profile.user_type}</span>
+                </p>
+              </div>
+              <div className="profile-card">
+                <FaNotesMedical className="profile-icon" />
+                <p>
+                  <strong>Diabetes</strong>
+                  <span className="value">
+                    {profile.diabetes ? "Yes" : "No"}
+                  </span>
+                </p>
+              </div>
+              <div className="profile-card">
+                <FaNotesMedical className="profile-icon" />
+                <p>
+                  <strong>Heart Disease</strong>
+                  <span className="value">
+                    {profile.heart_disease ? "Yes" : "No"}
+                  </span>
+                </p>
+              </div>
+              <div className="profile-card">
+                <FaNotesMedical className="profile-icon" />
+                <p>
+                  <strong>Allergies</strong>
+                  <span className="value">
+                    {Array.isArray(profile.allergies)
+                      ? profile.allergies.length > 0
+                        ? profile.allergies.join(", ")
+                        : "None"
+                      : profile.allergies
+                      ? profile.allergies
+                      : "None"}
+                  </span>
+                </p>
+              </div>
+              <div className="profile-card">
+                <FaNotesMedical className="profile-icon" />
+                <p>
+                  <strong>Other Diseases</strong>
+                  <span className="value">
+                    {profile.other_diseases || "None"}
+                  </span>
+                </p>
+              </div>
             </div>
           </div>
         )}
