@@ -5,10 +5,12 @@ import axios from "axios";
 import { Blocks } from "react-loader-spinner";
 import { Helmet } from "react-helmet";
 import style from "./ForgetPassword.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ForgetPassword() {
   const [isLoading, setIsLoading] = useState(false);
   const [apiMessage, setApiMessage] = useState(null);
+  let navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -25,12 +27,14 @@ export default function ForgetPassword() {
 
       try {
         const response = await axios.post(
-          "https://grackle-notable-hardly.ngrok-free.app/api/forgot-password/",
+          "https://grackle-notable-hardly.ngrok-free.app/api/request-password-reset/",
           values
         );
 
         if (response.status === 200) {
           setApiMessage("OTP has been sent to your email address.");
+          navigate("/otp", { state: { email: formik.values.email } });
+
         }
       } catch (error) {
         console.error("Error:", error);
@@ -53,7 +57,7 @@ export default function ForgetPassword() {
           <h2 className={style.title}>Forgot Password</h2>
           
           <p className={style.instructions}>
-            Enter your email address and we'll send you a one-time password (OTP) to reset your password.
+            Enter your email address and we will send you a one-time password (OTP) to reset your password.
           </p>
 
           {apiMessage && (

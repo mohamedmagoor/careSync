@@ -22,7 +22,7 @@ export default function PatientCatigoryPharmacies() {
   const getCategory = () => {
     axios
       .get(
-        "https://grackle-notable-hardly.ngrok-free.app/api/pharmacists-categories/",
+        "http://127.0.0.1:8000/api/pharmacists-categories/",
         {
           headers: {
             "ngrok-skip-browser-warning": "true",

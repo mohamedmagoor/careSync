@@ -18,14 +18,11 @@ export default function Login() {
   async function handleRegister(formsData) {
     setIsLoading(true);
     await axios
-      .post(
-        "https://grackle-notable-hardly.ngrok-free.app/api/login/",
-        formsData
-      )
+      .post("http://127.0.0.1:8000/api/login/", formsData)
       .then((response) => {
         setIsLoading(false);
         localStorage.setItem("userToken", response.data.access);
-        localStorage.setItem("userToken", response.data.user_type);
+        localStorage.setItem("userType", response.data.user_type);
         setUserToken(response.data.access);
         setUserType(response.data.user_type);
 
