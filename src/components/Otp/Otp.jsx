@@ -88,86 +88,91 @@ export default function Otp() {
       {isPageLoading ? (
         <Loading />
       ) : (
-        <div className={style.otpWrapper}>
-          <h2 className={style.title}>Enter OTP</h2>
+        <div className={style.wrapp}>
+          <div className={style.otpWrapper}>
+            <h2 className={`${style.title} `}> OTP Verification</h2>
 
-          {/* Display the API message or error here */}
-          {apiMessage && (
-            <p
-              className={style.apiMessage}
-              style={{
-                color: apiMessage.includes("successfully") ? "green" : "red",
-              }}
-            >
-              {apiMessage}
-            </p>
-          )}
+            {/* Display the API message or error here */}
+            {apiMessage && (
+              <p
+                className={style.apiMessage}
+                style={{
+                  color: apiMessage.includes("successfully") ? "green" : "red",
+                }}
+              >
+                {apiMessage}
+              </p>
+            )}
 
-          {/* OTP Form */}
-          {!isOtpVerified ? (
-            <form onSubmit={otpFormik.handleSubmit} className={style.form}>
-              <div className={style.formGroup}>
-                <label htmlFor="otp">OTP</label>
-                <input
-                  type="text"
-                  id="otp"
-                  name="otp"
-                  className={style.inputField}
-                  value={otpFormik.values.otp}
-                  onChange={otpFormik.handleChange}
-                  placeholder="Enter the OTP"
-                  required
-                />
-              </div>
-              <button type="submit" className={style.submitBtn}>
-                {isButtonLoading ? (
-                  <Blocks
-                    height="28"
-                    width="100"
-                    color="white"
-                    ariaLabel="blocks-loading"
-                    wrapperStyle={{}}
-                    wrapperClass="blocks-wrapper"
-                    visible={true}
+            {/* OTP Form */}
+            {!isOtpVerified ? (
+              <form onSubmit={otpFormik.handleSubmit} className={style.form}>
+                <div className={style.formGroup}>
+                  <label htmlFor="otp">Enter OTP</label>
+                  <input
+                    type="text"
+                    id="otp"
+                    name="otp"
+                    className={style.inputField}
+                    value={otpFormik.values.otp}
+                    onChange={otpFormik.handleChange}
+                    placeholder="Enter the 6-digits OTP"
+                    required
                   />
-                ) : (
-                  "Verify OTP"
-                )}
-              </button>
-            </form>
-          ) : (
-            // New Password Form
-            <form onSubmit={passwordFormik.handleSubmit} className={style.form}>
-              <div className={style.formGroup}>
-                <label htmlFor="new_password">New Password</label>
-                <input
-                  type="password"
-                  id="new_password"
-                  name="new_password"
-                  className={style.inputField}
-                  value={passwordFormik.values.new_password}
-                  onChange={passwordFormik.handleChange}
-                  placeholder="Enter your new password"
-                  required
-                />
-              </div>
-              <button type="submit" className={style.submitBtn}>
-                {isButtonLoading ? (
-                  <Blocks
-                    height="28"
-                    width="100"
-                    color="white"
-                    ariaLabel="blocks-loading"
-                    wrapperStyle={{}}
-                    wrapperClass="blocks-wrapper"
-                    visible={true}
+                </div>
+                <button type="submit" className={style.submitBtn}>
+                  {isButtonLoading ? (
+                    <Blocks
+                      height="28"
+                      width="100"
+                      color="white"
+                      ariaLabel="blocks-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="blocks-wrapper"
+                      visible={true}
+                    />
+                  ) : (
+                    "Verify OTP"
+                  )}
+                </button>
+              </form>
+            ) : (
+              // New Password Form
+              <form
+                onSubmit={passwordFormik.handleSubmit}
+                className={style.form}
+              >
+                <div className={style.formGroup}>
+                  <label htmlFor="new_password">New Password</label>
+                  <input
+                    type="password"
+                    id="new_password"
+                    name="new_password"
+                    className={style.inputField}
+                    value={passwordFormik.values.new_password}
+                    onChange={passwordFormik.handleChange}
+                    placeholder="Enter your new password"
+                    required
                   />
-                ) : (
-                  "Set New Password"
-                )}
-              </button>
-            </form>
-          )}
+                </div>
+                <button type="submit" className={style.submitBtn}>
+                  {isButtonLoading ? (
+                    <Blocks
+                      height="28"
+                      width="100"
+                      color="white"
+                      ariaLabel="blocks-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="blocks-wrapper"
+                      visible={true}
+                    />
+                  ) : (
+                    "Set New Password"
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       )}
     </>
