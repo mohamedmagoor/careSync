@@ -23,6 +23,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import DoctorShowHistory from "./components/DoctorShowHistory/DoctorShowHistory";
 import DoctorProfile from "./components/DoctorProfile/DoctorProfile";
 import AppointmentBooking from "./components/AppointmentBooking/AppointmentBooking";
+import DoctorAppointments from "./components/Doctors/DoctorAppointments";
 function App() {
   const routers = createBrowserRouter([
     { index: true, path: "splash", element: <SplashScreen /> },
@@ -100,6 +101,8 @@ function App() {
             </ProtectedRoute>
           ),
         },
+        { path: "doctor/appointments", element: <ProtectedRoute><DoctorAppointments /></ProtectedRoute> }
+,
         { path: "forgotPassword", element: <ForgetPassword /> },
         { path: "otp", element: <Otp /> },
         { path: "contact", element: <Contact /> },
