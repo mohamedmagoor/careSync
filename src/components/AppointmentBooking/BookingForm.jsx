@@ -39,12 +39,10 @@ const BookingForm = ({
     setError(null);
 
     try {
-      // Format datetime in ISO 8601 format with timezone (UTC)
-      const appointmentDateTime = `${slot.date}T${slot.time}:00Z`;
-      
       const appointmentData = {
         doctor: doctor.id,
-        appointment_datetime: appointmentDateTime,
+        appointment_date: slot.date,
+        appointment_time: slot.time,
         notes: notes.trim(),
       };
 
@@ -62,15 +60,15 @@ const BookingForm = ({
         }
       );
 
-      // First check if response is HTML (error page)
       const contentType = response.headers.get('content-type');
+      
+      // Handle HTML error responses (like 500 errors)
       if (contentType && contentType.includes('text/html')) {
         const errorText = await response.text();
         console.error('Server returned HTML error:', errorText);
         throw new Error('Server error occurred. Please try again.');
       }
 
-      // Try to parse as JSON
       const responseData = await response.json();
       
       if (!response.ok) {
@@ -79,7 +77,7 @@ const BookingForm = ({
                          responseData.message || 
                          `Failed to book appointment (${response.status})`;
         
-        // Handle specific datetime validation errors
+        // Handle field-specific validation errors
         if (responseData.non_field_errors) {
           errorMessage = responseData.non_field_errors.join(', ');
         }
@@ -91,16 +89,7 @@ const BookingForm = ({
       onBookingComplete();
     } catch (error) {
       console.error('Booking error:', error);
-      let errorMessage = error.message;
-      
-      // Format more user-friendly error messages
-      if (errorMessage.includes('offset-naive and offset-aware')) {
-        errorMessage = "There was a timezone error. Please try again.";
-      } else if (errorMessage.includes('past')) {
-        errorMessage = "Appointment time cannot be in the past.";
-      }
-      
-      setError(errorMessage || "Failed to book appointment. Please try again.");
+      setError(error.message || "Failed to book appointment. Please try again.");
     } finally {
       setIsSubmitting(false);
       setLoading(false);
