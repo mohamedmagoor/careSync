@@ -25,7 +25,7 @@ export default function ForgetPassword() {
 
       try {
         const response = await axios.post(
-          "https://grackle-notable-hardly.ngrok-free.app/api/forgot-password/",
+          "https://grackle-notable-hardly.ngrok-free.app/api/request-password-reset/",
           values
         );
 

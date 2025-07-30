@@ -5,6 +5,7 @@
   z-index: 1000;
   background: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: all var(--transition-normal);
 }
@@ -66,6 +67,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-xl);
+  transition: right var(--transition-normal) ease-in-out;
 }
 
 .navbar-nav {
@@ -188,6 +190,7 @@
 }
 
 /* Mobile Toggle */
+/* Mobile Toggle - Base Styles (Keep this) */
 .navbar-toggle {
   display: none;
   flex-direction: column;
@@ -198,20 +201,38 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10;
+  z-index: 1001;
 }
 
+/* Enhanced Hamburger-to-X Animation */
 .navbar-toggle span {
   width: 100%;
-  height: 3px;
+  height: 3px; /* Slightly thinner lines */
   background: var(--text-primary);
   border-radius: 2px;
-  transition: all var(--transition-fast);
+  transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* Smoother easing */
+  transform-origin: center; /* Better rotation pivot */
+  position: relative;
 }
 
 .navbar-toggle:hover span {
   background: var(--primary-600);
 }
+
+/* Enhanced X Transformation */
+.navbar-toggle.active span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.navbar-toggle.active span:nth-child(2) {
+  transform: scaleX(0); /* Shrink instead of fade */
+  opacity: 0;
+}
+
+.navbar-toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
 
 /* Responsive Design */
 @media (max-width: 1024px) {
@@ -246,7 +267,7 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: 280px;
+    width: 350px;
     height: 100vh;
     background: var(--bg-primary);
     border-left: 1px solid var(--border-color);
@@ -255,6 +276,7 @@
     padding: 80px var(--spacing-lg) var(--spacing-lg);
     transition: right var(--transition-normal);
     box-shadow: var(--shadow-xl);
+    z-index: 1000;
   }
   
   .navbar-menu.active {
@@ -298,7 +320,7 @@
   }
   
   /* Mobile menu overlay */
-  .navbar-modern::before {
+  .navbar-modern.menu-open::before {
     content: '';
     position: fixed;
     top: 0;
@@ -306,18 +328,18 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    visibility: visible;
     transition: all var(--transition-normal);
     z-index: 999;
   }
-  
-  .navbar-modern.menu-open::before {
-    opacity: 1;
-    visibility: visible;
-  }
 }
 
+@media (max-width: 576px) {
+   .navbar-menu {
+    width: 280px;
+  }
+}
 @media (max-width: 480px) {
   .navbar-container {
     padding: 0 var(--spacing-sm);

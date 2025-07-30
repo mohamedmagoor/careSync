@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>EasyCare - Your Complete Healthcare Solution</title>
+        <title>CareSync - Your Complete Healthcare Solution</title>
         <meta name="description" content="EasyCare provides comprehensive healthcare services including doctor consultations, patient care, and pharmacy services all in one place." />
       </Helmet>
       
