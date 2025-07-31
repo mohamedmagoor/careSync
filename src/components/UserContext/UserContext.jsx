@@ -2,105 +2,76 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const userContext = createContext();
 
-export default function UserContextProvider(props) {
-  // Track if authentication is being initialized
-  const [isLoading, setIsLoading] = useState(true);
+export default function UserContextProvider({ children }) {
+  const [userToken, setUserToken] = useState(null);
+  const [userType, setUserType] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [theme, setTheme] = useState('light');
 
-  // Initialize state from localStorage or default to null
-  const [userToken, setUserToken] = useState(() => {
-    try {
-      return localStorage.getItem("userToken") || null;
-    } catch (error) {
-      console.error("Error reading userToken from localStorage:", error);
-      return null;
-    }
-  });
-
-  const [userType, setUserType] = useState(() => {
-    try {
-      return localStorage.getItem("userType") || null;
-    } catch (error) {
-      console.error("Error reading userType from localStorage:", error);
-      return null;
-    }
-  });
-
-  // Check authentication on mount
+  // Initialize theme from localStorage on component mount
   useEffect(() => {
-    const checkAuth = () => {
-      try {
-        const token = localStorage.getItem("userToken");
-        const type = localStorage.getItem("userType");
-
-        if (token && type) {
-          setUserToken(token);
-          setUserType(type);
-        }
-      } catch (error) {
-        console.error("Error checking authentication:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    checkAuth();
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else if (prefersDark) {
+      setTheme('dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      setTheme('light');
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+    }
   }, []);
 
-  // Persist userToken to localStorage whenever it changes
-  useEffect(() => {
-    try {
-      if (userToken) {
-        localStorage.setItem("userToken", userToken);
-      } else {
-        localStorage.removeItem("userToken");
-      }
-    } catch (error) {
-      console.error("Error saving userToken to localStorage:", error);
-    }
-  }, [userToken]);
-
-  // Persist userType to localStorage whenever it changes
-  useEffect(() => {
-    try {
-      if (userType) {
-        localStorage.setItem("userType", userType);
-      } else {
-        localStorage.removeItem("userType");
-      }
-    } catch (error) {
-      console.error("Error saving userType to localStorage:", error);
-    }
-  }, [userType]);
-
-  // Enhanced logout function to clear all auth data
-  const logout = () => {
-    try {
-      setUserToken(null);
-      setUserType(null);
-      localStorage.removeItem("userToken");
-      localStorage.removeItem("userType");
-      // Clear any other auth-related data
-      localStorage.removeItem("user");
-      localStorage.removeItem("authData");
-    } catch (error) {
-      console.error("Error during logout:", error);
-    }
+  // Theme toggle function
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
   };
 
-  return (
-    <>
-      <userContext.Provider
-        value={{
-          userToken,
-          setUserToken,
-          userType,
-          setUserType,
-          isLoading,
-          logout,
-        }}
-      >
-        {props.children}
-      </userContext.Provider>
-    </>
-  );
+  // Check if user is logged in on component mount
+  useEffect(() => {
+    const token = localStorage.getItem("userToken");
+    const type = localStorage.getItem("userType");
+    if (token && type) {
+      setUserToken(token);
+      setUserType(type);
+    }
+  }, []);
+
+  const login = (token, type) => {
+    setUserToken(token);
+    setUserType(type);
+    localStorage.setItem("userToken", token);
+    localStorage.setItem("userType", type);
+  };
+
+  const logout = () => {
+    setUserToken(null);
+    setUserType(null);
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("userType");
+  };
+
+  const value = {
+    userToken,
+    setUserToken,
+    userType,
+    setUserType,
+    login,
+    logout,
+    isLoading,
+    setIsLoading,
+    theme,
+    setTheme,
+    toggleTheme,
+  };
+
+  return <userContext.Provider value={value}>{children}</userContext.Provider>;
 }
