@@ -207,14 +207,11 @@ body {
 
 .main-content {
   flex: 1;
-  min-height: calc(
-    100vh - 140px
-  ); /* Adjust based on navbar and footer height */
-  background: linear-gradient(
-    135deg,
-    var(--primary-600) 0%,
-    var(--primary-800) 100%
-  );
+  min-height: calc(100vh - 140px);
+  /* Adjust based on navbar and footer height */
+  background: linear-gradient(135deg,
+      var(--primary-600) 0%,
+      var(--primary-800) 100%);
   margin: 5px;
   /* display: flex;
   align-items: center;
@@ -238,18 +235,23 @@ h6 {
 h1 {
   font-size: 2.5rem;
 }
+
 h2 {
   font-size: 2rem;
 }
+
 h3 {
   font-size: 1.75rem;
 }
+
 h4 {
   font-size: 1.5rem;
 }
+
 h5 {
   font-size: 1.25rem;
 }
+
 h6 {
   font-size: 1rem;
 }
@@ -449,6 +451,7 @@ a:hover {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -458,9 +461,11 @@ a:hover {
 .text-center {
   text-align: center;
 }
+
 .text-left {
   text-align: left;
 }
+
 .text-right {
   text-align: right;
 }
@@ -468,18 +473,23 @@ a:hover {
 .mb-0 {
   margin-bottom: 0;
 }
+
 .mb-1 {
   margin-bottom: var(--spacing-xs);
 }
+
 .mb-2 {
   margin-bottom: var(--spacing-sm);
 }
+
 .mb-3 {
   margin-bottom: var(--spacing-md);
 }
+
 .mb-4 {
   margin-bottom: var(--spacing-lg);
 }
+
 .mb-5 {
   margin-bottom: var(--spacing-xl);
 }
@@ -487,18 +497,23 @@ a:hover {
 .mt-0 {
   margin-top: 0;
 }
+
 .mt-1 {
   margin-top: var(--spacing-xs);
 }
+
 .mt-2 {
   margin-top: var(--spacing-sm);
 }
+
 .mt-3 {
   margin-top: var(--spacing-md);
 }
+
 .mt-4 {
   margin-top: var(--spacing-lg);
 }
+
 .mt-5 {
   margin-top: var(--spacing-xl);
 }
@@ -506,18 +521,23 @@ a:hover {
 .p-0 {
   padding: 0;
 }
+
 .p-1 {
   padding: var(--spacing-xs);
 }
+
 .p-2 {
   padding: var(--spacing-sm);
 }
+
 .p-3 {
   padding: var(--spacing-md);
 }
+
 .p-4 {
   padding: var(--spacing-lg);
 }
+
 .p-5 {
   padding: var(--spacing-xl);
 }
@@ -527,9 +547,11 @@ a:hover {
   h1 {
     font-size: 2rem;
   }
+
   h2 {
     font-size: 1.75rem;
   }
+
   h3 {
     font-size: 1.5rem;
   }
@@ -592,4 +614,55 @@ a:hover {
 [data-theme="dark"] .active {
   background-color: var(--primary-900);
   color: var(--primary-200);
+}
+
+
+
+
+/* === Dark Theme Overrides === */
+[data-theme="dark"] {
+  /* Dark backgrounds */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+
+  /* Dark text colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #cbd5e1;
+
+  /* Border color in dark mode */
+  --border-color: #475569;
+
+  /* Primary palette adjustments if تريد تغيير ال primary tone */
+  --primary-50: #1e40af;
+  --primary-100: #1e3a8a;
+  --primary-200: #2563eb;
+  --primary-300: #3b82f6;
+  --primary-400: #60a5fa;
+  --primary-500: #93c5fd;
+  --primary-600: #bfdbfe;
+  --primary-700: #dbeafe;
+  --primary-800: #eff6ff;
+  --primary-900: #ffffff;
+
+  /* Shadows for dark mode */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+}
+
+
+ [data-theme="dark"] .btn,
+[data-theme="dark"] .btn-primary {
+  background-color: var(--primary-600);
+  color: #0f172a;
+   border: 1px solid var(--primary-300);
+}
+
+[data-theme="dark"] .btn:hover,
+[data-theme="dark"] .btn-primary:hover {
+  background-color: var(--primary-500);
+  color: #0f172a;
 }
