@@ -5,6 +5,7 @@
   z-index: 1000;
   background: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: all var(--transition-normal);
 }
@@ -65,8 +66,13 @@
 .navbar-menu {
   display: flex;
   align-items: center;
+<<<<<<< HEAD
   gap: clamp(1rem, 3vw, 2rem);
   flex-wrap: wrap;
+=======
+  gap: var(--spacing-xl);
+  transition: right var(--transition-normal) ease-in-out;
+>>>>>>> origin/Amer
 }
 
 .navbar-nav {
@@ -332,18 +338,21 @@
   display: none;
   flex-direction: column;
   justify-content: space-around;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
   z-index: 1001;
+<<<<<<< HEAD
   transition: all var(--transition-fast);
 }
 
 .navbar-toggle:hover {
   transform: scale(1.1);
+=======
+>>>>>>> origin/Amer
 }
 
 .navbar-toggle span {
@@ -351,14 +360,21 @@
   height: 3px;
   background: var(--text-primary);
   border-radius: 2px;
+<<<<<<< HEAD
   transition: all var(--transition-fast);
   transform-origin: center;
+=======
+  transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  transform-origin: center;
+  position: relative;
+>>>>>>> origin/Amer
 }
 
 .navbar-toggle:hover span {
   background: var(--primary-600);
 }
 
+<<<<<<< HEAD
 /* Animated hamburger menu */
 .navbar-modern.menu-open .navbar-toggle span:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
@@ -373,6 +389,22 @@
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
+=======
+.navbar-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg) scaleX(1.2);
+}
+
+.navbar-toggle.active span:nth-child(2) {
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.navbar-toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg) scaleX(1.2);
+}
+
+
+>>>>>>> origin/Amer
 /* Responsive Design */
 @media (max-width: 1200px) {
   .navbar-container {
@@ -463,7 +495,11 @@
     position: fixed;
     top: 0;
     right: -100%;
+<<<<<<< HEAD
     width: min(320px, 85vw);
+=======
+    width: 350px;
+>>>>>>> origin/Amer
     height: 100vh;
     background: var(--bg-primary);
     border-left: 1px solid var(--border-color);
@@ -472,7 +508,11 @@
     padding: 80px var(--spacing-lg) var(--spacing-lg);
     transition: right var(--transition-normal);
     box-shadow: var(--shadow-xl);
+<<<<<<< HEAD
     overflow-y: auto;
+=======
+    z-index: 1000;
+>>>>>>> origin/Amer
   }
 
   .navbar-menu.active {
@@ -530,9 +570,24 @@
     flex-direction: column;
     gap: var(--spacing-md);
   }
+<<<<<<< HEAD
 
   .user-actions {
     align-items: center;
+=======
+  
+  .navbar-toggle {
+    display: flex;
+    margin-top: 5px;
+  }
+
+  button.navbar-toggle.active {
+    margin: 35px 10px 0 0;
+  }
+
+  .instagram-link {
+    margin-right: 90px !important;
+>>>>>>> origin/Amer
   }
 
   .user-info {
@@ -546,23 +601,44 @@
   }
 
   /* Mobile menu overlay */
+<<<<<<< HEAD
   .navbar-modern::before {
     content: "";
+=======
+  .navbar-modern.menu-open::before {
+    content: '';
+>>>>>>> origin/Amer
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    visibility: visible;
     transition: all var(--transition-normal);
     z-index: 999;
   }
+<<<<<<< HEAD
 
   .navbar-modern.menu-open::before {
     opacity: 1;
     visibility: visible;
+=======
+}
+
+@media (max-width: 576px) {
+   .navbar-menu {
+    width: 280px;
+  }
+
+  button.navbar-toggle.active {
+    margin: 35px 10px 0 0;
+  }
+
+  .instagram-link {
+    margin-right: 70px !important;
+>>>>>>> origin/Amer
   }
 }
 
@@ -645,6 +721,14 @@
     padding: 0.6rem;
     font-size: 0.8rem;
   }
+
+  button.navbar-toggle.active {
+    margin: 35px 25px 0 0;
+  }
+
+  .instagram-link {
+    margin-right: 90px !important;
+  }
 }
 
 /* Legacy Support */
@@ -683,5 +767,10 @@
 }
 
 .custom-nav-link:hover::after {
+<<<<<<< HEAD
   width: 80%;
 }
+=======
+  @extend .nav-link:hover::after;
+}
+>>>>>>> origin/Amer
