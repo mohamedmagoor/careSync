@@ -190,13 +190,12 @@
 }
 
 /* Mobile Toggle */
-/* Mobile Toggle - Base Styles (Keep this) */
 .navbar-toggle {
   display: none;
   flex-direction: column;
   justify-content: space-around;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -204,14 +203,13 @@
   z-index: 1001;
 }
 
-/* Enhanced Hamburger-to-X Animation */
 .navbar-toggle span {
   width: 100%;
-  height: 3px; /* Slightly thinner lines */
+  height: 3px;
   background: var(--text-primary);
   border-radius: 2px;
-  transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* Smoother easing */
-  transform-origin: center; /* Better rotation pivot */
+  transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  transform-origin: center;
   position: relative;
 }
 
@@ -219,18 +217,17 @@
   background: var(--primary-600);
 }
 
-/* Enhanced X Transformation */
 .navbar-toggle.active span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg) scaleX(1.2);
 }
 
 .navbar-toggle.active span:nth-child(2) {
-  transform: scaleX(0); /* Shrink instead of fade */
+  transform: scaleX(0);
   opacity: 0;
 }
 
 .navbar-toggle.active span:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
+  transform: translateY(-9px) rotate(-45deg) scaleX(1.2);
 }
 
 
@@ -317,6 +314,15 @@
   
   .navbar-toggle {
     display: flex;
+    margin-top: 5px;
+  }
+
+  button.navbar-toggle.active {
+    margin: 35px 10px 0 0;
+  }
+
+  .instagram-link {
+    margin-right: 90px !important;
   }
   
   /* Mobile menu overlay */
@@ -339,7 +345,16 @@
    .navbar-menu {
     width: 280px;
   }
+
+  button.navbar-toggle.active {
+    margin: 35px 10px 0 0;
+  }
+
+  .instagram-link {
+    margin-right: 70px !important;
+  }
 }
+
 @media (max-width: 480px) {
   .navbar-container {
     padding: 0 var(--spacing-sm);
@@ -352,6 +367,14 @@
   .navbar-menu {
     width: 100%;
     right: -100%;
+  }
+
+  button.navbar-toggle.active {
+    margin: 35px 25px 0 0;
+  }
+
+  .instagram-link {
+    margin-right: 90px !important;
   }
 }
 
