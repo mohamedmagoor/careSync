@@ -184,6 +184,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -575,7 +576,7 @@ a:hover {
   color: var(--primary-600);
   background-color: var(--primary-50);
   padding: var(--spacing-xs);
-  border-radius: var(--radius-md);
+  /* border-radius: var(--radius-md); */
 }
 
 [data-theme="dark"] .active {
