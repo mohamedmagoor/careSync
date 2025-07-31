@@ -26,12 +26,15 @@ const Profile = () => {
   useEffect(() => {
     const fetchPatientProfile = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/profile/", {
-          headers: {
-            "ngrok-skip-browser-warning": "true",
-            Authorization: `Bearer ${userToken}`,
-          },
-        });
+        const response = await axios.get(
+          "https://grackle-notable-hardly.ngrok-free.app/api/profile/",
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true",
+              Authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
         setProfile(response.data);
         setLoading(false);
       } catch (err) {

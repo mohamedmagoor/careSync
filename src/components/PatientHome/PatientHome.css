@@ -198,6 +198,7 @@ html {
   border: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
+  width: 95%;
 }
 
 .profile-section::before {

@@ -17,6 +17,9 @@
   justify-content: space-between;
   height: 70px;
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Brand Section */
@@ -66,7 +69,10 @@
   display: flex;
   align-items: center;
   gap: clamp(1rem, 3vw, 2rem);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar-nav {
@@ -92,7 +98,7 @@
   );
   border-radius: var(--radius-lg);
   border: 1px solid rgba(52, 152, 219, 0.2);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 [data-theme="dark"] .patient-nav-section {
@@ -189,7 +195,7 @@
   display: flex;
   align-items: center;
   gap: clamp(0.5rem, 2vw, 1rem);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 /* Social Links */
@@ -390,6 +396,8 @@
   .patient-nav-section {
     gap: clamp(0.3rem, 1vw, 0.8rem);
     padding: var(--spacing-xs) clamp(0.5rem, 1.5vw, 1rem);
+    display: flex;
+    flex-wrap: nowrap;
   }
 
   .nav-link {
@@ -414,7 +422,6 @@
   .patient-nav-section {
     flex-wrap: nowrap;
     justify-content: center;
-    
   }
 
   .nav-link {
@@ -429,7 +436,6 @@
 
 @media (max-width: 900px) {
   .patient-nav-section {
-    flex-direction: column;
     align-items: stretch;
     gap: var(--spacing-xs);
   }
@@ -487,7 +493,7 @@
   }
 
   .patient-nav-section {
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: var(--spacing-sm);
     padding: var(--spacing-sm);
     width: 100%;
@@ -498,6 +504,8 @@
     );
     border-radius: var(--radius-lg);
     margin-bottom: var(--spacing-md);
+    display: flex;
+    flex-wrap: nowrap;
   }
 
   .nav-link {
@@ -611,6 +619,8 @@
   .patient-nav-section {
     padding: var(--spacing-sm);
     margin-top: 50px;
+    display: flex;
+    flex-wrap: nowrap;
   }
 
   .nav-link {
