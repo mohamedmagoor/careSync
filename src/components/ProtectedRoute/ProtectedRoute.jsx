@@ -2,8 +2,17 @@ import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { userContext } from "../UserContext/UserContext";
 
-export default function ProtectedRoute(props) {
-  const { userToken, isLoading } = useContext(userContext);
+export default function ProtectedRoute({ children, allowedRoles }) {
+  const { userToken, userType, isLoading } = useContext(userContext);
+
+  // Debug logging
+  console.log('ProtectedRoute Debug:', {
+    userToken: userToken ? 'Token exists' : 'No token',
+    userType: userType,
+    allowedRoles: allowedRoles,
+    localStorageToken: localStorage.getItem('userToken'),
+    localStorageType: localStorage.getItem('userType')
+  });
 
   // Show loading while checking authentication
   if (isLoading) {
@@ -24,9 +33,17 @@ export default function ProtectedRoute(props) {
   }
 
   // Check if user is authenticated
-  if (userToken) {
-    return props.children;
-  } else {
+  if (!userToken) {
+    console.log('Redirecting to login: No userToken');
     return <Navigate to="/login" replace />;
   }
+
+  // Check if user has required role
+  if (allowedRoles && !allowedRoles.includes(userType)) {
+    console.log('Redirecting to home: User type', userType, 'not in allowed roles', allowedRoles);
+    return <Navigate to="/" replace />;
+  }
+
+  console.log('Access granted to protected route');
+  return children;
 }

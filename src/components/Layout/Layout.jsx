@@ -8,12 +8,7 @@ export default function Layout() {
   const { userToken, setUserToken } = useContext(userContext);
 
   useEffect(() => {
-    // Initialize user token
-    if (localStorage.getItem("userToken") !== null) {
-      setUserToken(localStorage.getItem("userToken"));
-    }
-    
-    // Initialize theme
+    // Initialize theme only - user token is handled by UserContext
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
@@ -22,7 +17,7 @@ export default function Layout() {
     } else {
       document.documentElement.setAttribute('data-theme', 'light');
     }
-  }, [setUserToken]);
+  }, []);
 
   return (
     <div className="layout">
