@@ -4,6 +4,7 @@ import App from './App.jsx'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'antd/dist/reset.css'
 
 import './index.css'
 
