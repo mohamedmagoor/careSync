@@ -179,7 +179,7 @@ export default function NavBar() {
               >
                 <i className="fa-solid fa-brands fa-instagram"></i>
               </a>
-              <ThemeToggle />
+              {/* <ThemeToggle /> */}
             </div>
 
             {userToken !== null ? (
