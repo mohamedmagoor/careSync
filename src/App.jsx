@@ -24,6 +24,10 @@ import DoctorShowHistory from "./components/DoctorShowHistory/DoctorShowHistory"
 import DoctorProfile from "./components/DoctorProfile/DoctorProfile";
 import AppointmentBooking from "./components/AppointmentBooking/AppointmentBooking";
 import DoctorAppointments from "./components/Doctors/DoctorAppointments";
+import DoctorScheduleManage from "./components/AppointmentBooking/DoctorScheduleManage";
+import DoctorDaysOffManage from "./components/AppointmentBooking/DoctorDaysOffManage";
+import DoctorAvailabilityManagement from "./components/AppointmentBooking/DoctorAvailabilityManagement";
+
 function App() {
   const routers = createBrowserRouter([
     { index: true, path: "splash", element: <SplashScreen /> },
@@ -48,7 +52,7 @@ function App() {
         {
           path: "pharmacistHome",
           element: (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['pharmacist']}>
               <PharmacistHome />
             </ProtectedRoute>
           ),
@@ -56,7 +60,7 @@ function App() {
         {
           path: "doctorHome",
           element: (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['doctor']}>
               <DoctorHome />
             </ProtectedRoute>
           ),
@@ -64,7 +68,7 @@ function App() {
         {
           path: "doctorProfile",
           element: (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['doctor']}>
               <DoctorProfile />
             </ProtectedRoute>
           ),
@@ -72,15 +76,39 @@ function App() {
         {
           path: "DoctorShowHistory",
           element: (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['doctor']}>
               <DoctorShowHistory />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "doctor/schedule",
+          element: (
+            <ProtectedRoute allowedRoles={['doctor']}>
+              <DoctorScheduleManage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "doctor/days-off",
+          element: (
+            <ProtectedRoute allowedRoles={['doctor']}>
+              <DoctorDaysOffManage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "doctor/availability",
+          element: (
+            <ProtectedRoute allowedRoles={['doctor']}>
+              <DoctorAvailabilityManagement />
             </ProtectedRoute>
           ),
         },
         {
           path: "patientHome",
           element: (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['patient']}>
               <PatientHome />
             </ProtectedRoute>
           ),
@@ -96,13 +124,19 @@ function App() {
         {
           path: "appointments",
           element: (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['patient']}>
               <AppointmentBooking />
             </ProtectedRoute>
           ),
         },
-        { path: "doctor/appointments", element: <ProtectedRoute><DoctorAppointments /></ProtectedRoute> }
-,
+        { 
+          path: "doctor/appointments", 
+          element: (
+            <ProtectedRoute allowedRoles={['doctor']}>
+              <DoctorAppointments />
+            </ProtectedRoute>
+          ) 
+        },
         { path: "forgotPassword", element: <ForgetPassword /> },
         { path: "otp", element: <Otp /> },
         { path: "contact", element: <Contact /> },

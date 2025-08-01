@@ -5,7 +5,7 @@ export const userContext = createContext();
 export default function UserContextProvider({ children }) {
   const [userToken, setUserToken] = useState(null);
   const [userType, setUserType] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [theme, setTheme] = useState('light');
 
   // Initialize theme from localStorage on component mount
@@ -37,12 +37,17 @@ export default function UserContextProvider({ children }) {
 
   // Check if user is logged in on component mount
   useEffect(() => {
+    console.log('UserContext: Initializing from localStorage...');
     const token = localStorage.getItem("userToken");
     const type = localStorage.getItem("userType");
+    console.log('UserContext: Found in localStorage:', { token: token ? 'exists' : 'null', type });
     if (token && type) {
       setUserToken(token);
       setUserType(type);
+      console.log('UserContext: Set user data from localStorage');
     }
+    setIsLoading(false);
+    console.log('UserContext: Finished initialization');
   }, []);
 
   const login = (token, type) => {
