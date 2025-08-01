@@ -1,4 +1,4 @@
-.theme-toggle {
+/* .theme-toggle {
   position: relative;
   width: 36px;
   height: 36px;
@@ -43,20 +43,20 @@
 
 .theme-toggle svg {
   transition: all var(--transition-fast);
-}
+} */
 
 /* Dark theme specific styles */
-[data-theme="dark"] .theme-toggle {
+/* [data-theme="dark"] .theme-toggle {
   background: var(--bg-secondary);
   border-color: var(--border-color);
 }
 
 [data-theme="dark"] .theme-toggle:hover {
   background: var(--bg-tertiary);
-}
+} */
 
 /* Responsive */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .theme-toggle {
     width: 40px;
     height: 40px;
@@ -70,9 +70,9 @@
   button.theme-toggle {
     margin-right: 45px !important;
   }
-}
+} */
 
-@media screen and (max-width: 576px) {
+/* @media screen and (max-width: 576px) {
     button.theme-toggle {
     margin-right: 20px !important;
   }
@@ -86,5 +86,4 @@
 
 button.theme-toggle {
   margin: 0 5px 0 0;
-}
-
+} */
