@@ -5,7 +5,7 @@ import DoctorSchedule from "./DoctorSchedule";
 import BookingForm from "./BookingForm";
 import MyAppointments from "./MyAppointments";
 import "./AppointmentBooking.css";
-
+import Loading from "../Loading/Loading";
 const AppointmentBooking = () => {
   const { userToken } = useContext(userContext);
   const [currentStep, setCurrentStep] = useState("doctors"); // doctors, schedule, booking, myAppointments
@@ -146,14 +146,7 @@ const AppointmentBooking = () => {
         )}
       </div>
 
-      {loading && (
-        <div className="loading-overlay">
-          <div className="loading-spinner">
-            <div className="spinner"></div>
-            <p>Loading...</p>
-          </div>
-        </div>
-      )}
+      {loading && <Loading />}
     </div>
   );
 };
