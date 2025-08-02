@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import "./DoctorList.css";
 
 const DoctorList = ({ onDoctorSelect, userToken, setError, setLoading }) => {
+  const { t } = useTranslation();
   const [doctors, setDoctors] = useState([]);
   const [filteredDoctors, setFilteredDoctors] = useState([]);
   const [specializations, setSpecializations] = useState([]);

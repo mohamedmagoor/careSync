@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { userContext } from "../UserContext/UserContext";
 import DoctorList from "./DoctorList";
 import DoctorSchedule from "./DoctorSchedule";
@@ -8,6 +9,7 @@ import "./AppointmentBooking.css";
 import Loading from "../Loading/Loading";
 const AppointmentBooking = () => {
   const { userToken } = useContext(userContext);
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState("doctors"); // doctors, schedule, booking, myAppointments
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null);
@@ -16,10 +18,26 @@ const AppointmentBooking = () => {
   const [success, setSuccess] = useState("");
 
   const steps = [
-    { key: "doctors", label: "Select Doctor", icon: "👨‍⚕️" },
-    { key: "schedule", label: "Choose Time", icon: "📅" },
-    { key: "booking", label: "Book Appointment", icon: "✅" },
-    { key: "myAppointments", label: "My Appointments", icon: "📋" },
+    {
+      key: "doctors",
+      label: t("appointment.steps.selectDoctor", "Select Doctor"),
+      icon: "👨‍⚕️",
+    },
+    {
+      key: "schedule",
+      label: t("appointment.steps.chooseTime", "Choose Time"),
+      icon: "📅",
+    },
+    {
+      key: "booking",
+      label: t("appointment.steps.bookAppointment", "Book Appointment"),
+      icon: "✅",
+    },
+    {
+      key: "myAppointments",
+      label: t("appointment.steps.myAppointments", "My Appointments"),
+      icon: "📋",
+    },
   ];
 
   const handleDoctorSelect = (doctor) => {
@@ -58,7 +76,7 @@ const AppointmentBooking = () => {
   return (
     <div className="appointment-booking">
       <div className="booking-header">
-        <h1>Book an Appointment</h1>
+        <h1>{t("appointment.title", "Book an Appointment")}</h1>
         <div className="step-indicator">
           {steps.map((step, index) => (
             <div
@@ -87,7 +105,11 @@ const AppointmentBooking = () => {
         <div className="alert alert-error">
           <span className="alert-icon">⚠️</span>
           {error}
-          <button onClick={() => setError("")} className="alert-close">
+          <button
+            onClick={() => setError("")}
+            className="alert-close"
+            aria-label={t("close", "Close")}
+          >
             ×
           </button>
         </div>
@@ -97,7 +119,11 @@ const AppointmentBooking = () => {
         <div className="alert alert-success">
           <span className="alert-icon">✅</span>
           {success}
-          <button onClick={() => setSuccess("")} className="alert-close">
+          <button
+            onClick={() => setSuccess("")}
+            className="alert-close"
+            aria-label={t("close", "Close")}
+          >
             ×
           </button>
         </div>

@@ -1,3 +1,19 @@
+/* RTL Support for Forms */
+form:dir(rtl) label,
+.form-group:dir(rtl) label {
+  text-align: right;
+  display: block;
+}
+form:dir(rtl) input,
+form:dir(rtl) textarea,
+.form-group:dir(rtl) input,
+.form-group:dir(rtl) textarea {
+  text-align: right;
+}
+form:dir(rtl) .btn,
+.form-group:dir(rtl) .btn {
+  float: right;
+}
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 

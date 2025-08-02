@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import "./NavBar.css";
@@ -10,6 +11,7 @@ import { FaUser } from "react-icons/fa";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 export default function NavBar() {
+  const { t } = useTranslation();
   const { userToken, setUserToken, userType, setUserType, logout, isLoading } =
     useContext(userContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,7 +69,7 @@ export default function NavBar() {
         <div className="navbar-brand">
           <Link to="/home" className="brand-link" onClick={closeMenu}>
             <img src={imageL} alt="EasyCare Logo" className="brand-logo" />
-            <span className="brand-text">CareSync</span>
+            <span className="brand-text">{t("navbar.brand", "CareSync")}</span>
           </Link>
         </div>
 
@@ -85,7 +87,7 @@ export default function NavBar() {
                       onClick={closeMenu}
                     >
                       <span className="nav-icon">📅</span>
-                      Book Appointment
+                      {t("navbar.bookAppointment", "Book Appointment")}
                     </NavLink>
                     <NavLink
                       to="/patientCategoryDoctors"
@@ -95,7 +97,7 @@ export default function NavBar() {
                       onClick={closeMenu}
                     >
                       <span className="nav-icon">👨‍⚕️</span>
-                      All Doctors
+                      {t("navbar.allDoctors", "All Doctors")}
                     </NavLink>
                     <NavLink
                       to="/patientCatigoryPharmacies"
@@ -105,7 +107,7 @@ export default function NavBar() {
                       onClick={closeMenu}
                     >
                       <span className="nav-icon">💊</span>
-                      All Pharmacies
+                      {t("navbar.allPharmacies", "All Pharmacies")}
                     </NavLink>
                     <NavLink
                       to="/contact"
@@ -115,50 +117,53 @@ export default function NavBar() {
                       onClick={closeMenu}
                     >
                       <span className="nav-icon">📞</span>
-                      Contact us
+                      {t("navbar.contact", "Contact us")}
                     </NavLink>
                   </div>
                 )}
                 {userType === "doctor" && (
                   <>
-                  <div className="doctor-nav-section">
-                    <NavLink
-                      to="/doctor/appointments"
-                      className={({ isActive }) =>
-                        `nav-link ${isActive ? "active-nav" : ""}`
-                      }
-                      onClick={closeMenu}
-                    >
-                      Appointments
-                    </NavLink>
-                    <NavLink
-                      to="/doctor/availability"
-                      className={({ isActive }) =>
-                        `nav-link ${isActive ? "active-nav" : ""}`
-                      }
-                      onClick={closeMenu}
-                    >
-                      Manage Availability
-                    </NavLink>
-                    <NavLink
-                      to="/doctorHome"
-                      className={({ isActive }) =>
-                        `nav-link ${isActive ? "active-nav" : ""}`
-                      }
-                      onClick={closeMenu}
-                    >
-                      Add Patient Prescription
-                    </NavLink>
-                    <NavLink
-                      to="/DoctorShowHistory"
-                      className={({ isActive }) =>
-                        `nav-link ${isActive ? "active-nav" : ""}`
-                      }
-                      onClick={closeMenu}
-                    >
-                      Show Patient History
-                    </NavLink></div>
-                    
+                    <div className="doctor-nav-section">
+                      <NavLink
+                        to="/doctor/appointments"
+                        className={({ isActive }) =>
+                          `nav-link ${isActive ? "active-nav" : ""}`
+                        }
+                        onClick={closeMenu}
+                      >
+                        {t("navbar.doctorAppointments", "Appointments")}
+                      </NavLink>
+                      <NavLink
+                        to="/doctor/availability"
+                        className={({ isActive }) =>
+                          `nav-link ${isActive ? "active-nav" : ""}`
+                        }
+                        onClick={closeMenu}
+                      >
+                        {t("navbar.manageAvailability", "Manage Availability")}
+                      </NavLink>
+                      <NavLink
+                        to="/doctorHome"
+                        className={({ isActive }) =>
+                          `nav-link ${isActive ? "active-nav" : ""}`
+                        }
+                        onClick={closeMenu}
+                      >
+                        {t(
+                          "navbar.addPrescription",
+                          "Add Patient Prescription"
+                        )}
+                      </NavLink>
+                      <NavLink
+                        to="/DoctorShowHistory"
+                        className={({ isActive }) =>
+                          `nav-link ${isActive ? "active-nav" : ""}`
+                        }
+                        onClick={closeMenu}
+                      >
+                        {t("navbar.showHistory", "Show Patient History")}
+                      </NavLink>
+                    </div>
                   </>
                 )}
                 {userType === "pharmacist" && (
@@ -169,7 +174,7 @@ export default function NavBar() {
                     }
                     onClick={closeMenu}
                   >
-                    Manage Pharmacy
+                    {t("navbar.managePharmacy", "Manage Pharmacy")}
                   </NavLink>
                 )}
               </>
@@ -206,7 +211,9 @@ export default function NavBar() {
               <div className="user-actions">
                 <div className="d-flex align-items-center gap-1">
                   <div className="user-info">
-                    <span className="user-type-badge">{userType}</span>
+                    <span className="user-type-badge">
+                      {t("navbar.userType." + userType, userType)}
+                    </span>
                   </div>
                   <Link
                     to={profileLink}
@@ -223,7 +230,7 @@ export default function NavBar() {
                   className="btn btn-outline logout-btn"
                 >
                   <span className="logout-icon">🚪</span>
-                  Logout
+                  {t("navbar.logout", "Logout")}
                 </button>
               </div>
             ) : (
@@ -233,14 +240,14 @@ export default function NavBar() {
                   className="btn btn-primary"
                   onClick={closeMenu}
                 >
-                  JOIN US
+                  {t("navbar.joinUs", "JOIN US")}
                 </Link>
                 <Link
                   to="/login"
                   className="btn btn-outline"
                   onClick={closeMenu}
                 >
-                  Login
+                  {t("navbar.login", "Login")}
                 </Link>
               </div>
             )}

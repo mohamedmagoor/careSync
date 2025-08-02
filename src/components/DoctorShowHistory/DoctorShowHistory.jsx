@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 import Loading from "../Loading/Loading";
 import { userContext } from "../UserContext/UserContext";
@@ -7,6 +8,7 @@ import "./DoctorShowHistory.css";
 import { Helmet } from "react-helmet";
 
 export default function DoctorShowHistory() {
+  const { t } = useTranslation();
   const [medicineList, setMedicineList] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -51,13 +53,13 @@ export default function DoctorShowHistory() {
               <div className="col-md-6">
                 <div className="mb-3">
                   <label htmlFor="nationalId" className="form-label mt-4 h2">
-                    Enter Patient's National ID
+                    {t("enterPatientNationalId", "Enter Patient's National ID")}
                   </label>
                   <input
                     type="search"
                     className="form-control"
                     id="nationalId"
-                    placeholder="National ID"
+                    placeholder={t("nationalId", "National ID")}
                     onChange={(e) => setInputValue(e.target.value)}
                     required
                   />
@@ -69,7 +71,7 @@ export default function DoctorShowHistory() {
                     getMedicineList(inputValue);
                   }}
                 >
-                  Get Prescribed Medicines
+                  {t("getPrescribedMedicines", "Get Prescribed Medicines")}
                 </button>
               </div>
             </div>
@@ -77,7 +79,7 @@ export default function DoctorShowHistory() {
 
           {/* Patient Card to Show Personal Data */}
           <div className="patient mt-5">
-            <h1 className="h3">Patient Details</h1>
+            <h1 className="h3">{t("patientDetails", "Patient Details")}</h1>
             <div className="patientCard mt-4 shadow  ">
               {patientDetails ? (
                 <table className="table table-striped table-hover">
@@ -109,13 +111,13 @@ export default function DoctorShowHistory() {
                   </tbody>
                 </table>
               ) : (
-                <p>No patient details available.</p>
+                <p>{t("noPatientDetails", "No patient details available.")}</p>
               )}
             </div>
           </div>
 
           <div className="my-5 prescriptionList">
-            <h3 className="bold h2">Prescribed Medicines</h3>
+            <h3 className="bold h2">{t("prescribedMedicines", "Prescribed Medicines")}</h3>
             <div
               className="accordion accordion-flush shadow-lg"
               id="accordionFlushExample"
@@ -155,10 +157,10 @@ export default function DoctorShowHistory() {
                             {item.medicine_name}
                           </p>
                           <p>
-                            <strong>Dosage: </strong> {item.dosage}
+                            <strong>{t("dosageLabel", "Dosage:")} </strong> {item.dosage}
                           </p>
                           <p>
-                            <strong>Instructions: </strong> {item.instructions}
+                            <strong>{t("instructionsLabel", "Instructions:")} </strong> {item.instructions}
                           </p>
                         </div>
                       </div>
@@ -166,7 +168,7 @@ export default function DoctorShowHistory() {
                   </div>
                 ))
               ) : (
-                <p>No prescribed medicines found for this patient.</p>
+                <p>{t("noPrescribedMedicines", "No prescribed medicines found for this patient.")}</p>
               )}
             </div>
           </div>
