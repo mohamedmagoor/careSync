@@ -3,7 +3,6 @@
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-color);
   color: var(--text-primary);
-  margin-top: 50px;
 }
 
 .footer-container {

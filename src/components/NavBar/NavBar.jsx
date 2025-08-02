@@ -72,7 +72,7 @@ export default function NavBar() {
         </div>
 
         <div className={`navbar-menu ${isMenuOpen ? "active" : ""}`}>
-          <div className="navbar-nav">
+          <div className="navbar-nav d-flex flex-row">
             {userToken !== null ? (
               <>
                 {userType === "patient" && (
@@ -121,6 +121,25 @@ export default function NavBar() {
                 )}
                 {userType === "doctor" && (
                   <>
+                  <div className="doctor-nav-section">
+                    <NavLink
+                      to="/doctor/appointments"
+                      className={({ isActive }) =>
+                        `nav-link ${isActive ? "active-nav" : ""}`
+                      }
+                      onClick={closeMenu}
+                    >
+                      Appointments
+                    </NavLink>
+                    <NavLink
+                      to="/doctor/availability"
+                      className={({ isActive }) =>
+                        `nav-link ${isActive ? "active-nav" : ""}`
+                      }
+                      onClick={closeMenu}
+                    >
+                      Manage Availability
+                    </NavLink>
                     <NavLink
                       to="/doctorHome"
                       className={({ isActive }) =>
@@ -138,7 +157,8 @@ export default function NavBar() {
                       onClick={closeMenu}
                     >
                       Show Patient History
-                    </NavLink>
+                    </NavLink></div>
+                    
                   </>
                 )}
                 {userType === "pharmacist" && (
@@ -179,7 +199,7 @@ export default function NavBar() {
               >
                 <i className="fa-solid fa-brands fa-instagram"></i>
               </a>
-              {/* <ThemeToggle /> */}
+              <ThemeToggle />
             </div>
 
             {userToken !== null ? (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './DoctorAppointments.css';
-
+import Loading from '../Loading/Loading';
 const DoctorAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -124,12 +124,7 @@ const DoctorAppointments = () => {
   };
 
   if (loading) {
-    return (
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
-        <p>Loading appointments...</p>
-      </div>
-    );
+    return <Loading />
   }
 
   if (error) {

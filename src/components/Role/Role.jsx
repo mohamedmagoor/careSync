@@ -21,7 +21,7 @@ export default function Role() {
         <title>Role</title>
         <meta name="description" content="Choose Your Role" />
       </Helmet>
-      <section className="welcome-section">
+      <section className="welcome-section-role">
         <Container>
           <h2 className="text-center">Thank You for Joining Us!</h2>
           <h4 className="text-center">Please choose your role:</h4>

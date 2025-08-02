@@ -73,12 +73,12 @@ const Profile = () => {
         <meta name="description" content="easy care Patient Home" />
       </Helmet>
       <div className="profile-container">
-        <div className="dashboard-header">
+        <div className="dashboard-header w-100">
           <img src={image} alt="Patient" className="profile-photo" />
-          <div className="welcome-section">
-            <h1 className="profile-header">Patient Dashboard</h1>
+          <div className="welcome-section text-start">
+            <h1 className="profile-header text-start fw-bolder">Patient Dashboard</h1>
             {profile && (
-              <p className="welcome-text">Welcome back, {profile.full_name}!</p>
+              <p className="welcome-text fw-bolder">Welcome back, {profile.full_name}!</p>
             )}
           </div>
         </div>
