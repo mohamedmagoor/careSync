@@ -119,7 +119,11 @@ const DoctorList = ({ onDoctorSelect, userToken, setError, setLoading }) => {
         </div>
       </div>
 
-      <div className={`doctors-grid ${filteredDoctors.length === 0 ? "d-block" : ""}`}>
+      <div
+        className={`doctors-grid ${
+          filteredDoctors.length === 0 ? "d-block" : ""
+        }`}
+      >
         {filteredDoctors.length === 0 ? (
           <div className="no-doctors">
             <div className="no-doctors-icon">👨‍⚕️</div>

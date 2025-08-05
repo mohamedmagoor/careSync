@@ -58,7 +58,7 @@ export default function PatientRegister() {
       .required("Phone is required"),
     password: Yup.string()
       .matches(
-        /^[A-Za-z0-9]{9,20}/,
+        /^[A-Za-z0-9]{6,20}/,
         "Please enter a password that is 9 to 20 characters long. The password can only contain letters (A-Z, a-z) and numbers (0-9)."
       )
       .required("Password is required")

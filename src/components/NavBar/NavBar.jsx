@@ -122,49 +122,44 @@ export default function NavBar() {
                   </div>
                 )}
                 {userType === "doctor" && (
-                  <>
-                    <div className="doctor-nav-section">
-                      <NavLink
-                        to="/doctor/appointments"
-                        className={({ isActive }) =>
-                          `nav-link ${isActive ? "active-nav" : ""}`
-                        }
-                        onClick={closeMenu}
-                      >
-                        {t("navbar.doctorAppointments", "Appointments")}
-                      </NavLink>
-                      <NavLink
-                        to="/doctor/availability"
-                        className={({ isActive }) =>
-                          `nav-link ${isActive ? "active-nav" : ""}`
-                        }
-                        onClick={closeMenu}
-                      >
-                        {t("navbar.manageAvailability", "Manage Availability")}
-                      </NavLink>
-                      <NavLink
-                        to="/doctorHome"
-                        className={({ isActive }) =>
-                          `nav-link ${isActive ? "active-nav" : ""}`
-                        }
-                        onClick={closeMenu}
-                      >
-                        {t(
-                          "navbar.addPrescription",
-                          "Add Patient Prescription"
-                        )}
-                      </NavLink>
-                      <NavLink
-                        to="/DoctorShowHistory"
-                        className={({ isActive }) =>
-                          `nav-link ${isActive ? "active-nav" : ""}`
-                        }
-                        onClick={closeMenu}
-                      >
-                        {t("navbar.showHistory", "Show Patient History")}
-                      </NavLink>
-                    </div>
-                  </>
+                  <div className="doctor-nav-section">
+                    <NavLink
+                      to="/doctor/appointments"
+                      className={({ isActive }) =>
+                        `nav-link ${isActive ? "active-nav" : ""}`
+                      }
+                      onClick={closeMenu}
+                    >
+                      {t("navbar.doctorAppointments", "Appointments")}
+                    </NavLink>
+                    <NavLink
+                      to="/doctor/availability"
+                      className={({ isActive }) =>
+                        `nav-link ${isActive ? "active-nav" : ""}`
+                      }
+                      onClick={closeMenu}
+                    >
+                      {t("navbar.manageAvailability", "Manage Availability")}
+                    </NavLink>
+                    <NavLink
+                      to="/doctorHome"
+                      className={({ isActive }) =>
+                        `nav-link ${isActive ? "active-nav" : ""}`
+                      }
+                      onClick={closeMenu}
+                    >
+                      {t("navbar.addPrescription", "Add Patient Prescription")}
+                    </NavLink>
+                    <NavLink
+                      to="/DoctorShowHistory"
+                      className={({ isActive }) =>
+                        `nav-link ${isActive ? "active-nav" : ""}`
+                      }
+                      onClick={closeMenu}
+                    >
+                      {t("navbar.showHistory", "Show Patient History")}
+                    </NavLink>
+                  </div>
                 )}
                 {userType === "pharmacist" && (
                   <NavLink
@@ -176,6 +171,19 @@ export default function NavBar() {
                   >
                     {t("navbar.managePharmacy", "Manage Pharmacy")}
                   </NavLink>
+                )}
+                {userType === "admin" && (
+                  <div className="admin-nav-section">
+                    <NavLink
+                      to="admin/dashboard"
+                      className={({ isActive }) =>
+                        `nav-link ${isActive ? "active-nav" : ""}`
+                      }
+                      onClick={closeMenu}
+                    >
+                      {t("navbar.adminDashboard", "Admin Dashboard")}
+                    </NavLink>
+                  </div>
                 )}
               </>
             ) : null}

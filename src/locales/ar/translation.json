@@ -48,13 +48,15 @@
     "addPrescription": "إضافة وصفة طبية للمريض",
     "showHistory": "عرض سجل المرضى",
     "managePharmacy": "إدارة الصيدلية",
+    "adminDashboard": "لوحة تحكم المدير",
     "logout": "تسجيل الخروج",
     "joinUs": "انضم إلينا",
     "login": "تسجيل الدخول",
     "userType": {
       "patient": "مريض",
       "doctor": "طبيب",
-      "pharmacist": "صيدلي"
+      "pharmacist": "صيدلي",
+      "admin": "مدير"
     }
   },
   "hero.badge": "نحن نقدم مجموعة شاملة من جميع احتياجاتك الصحية",

@@ -183,10 +183,15 @@ export default function PharmacistHome() {
                                   {item.medicine_name}
                                 </p>
                                 <p>
-                                  <strong>{t("dosageLabel", "Dosage:")} </strong> {item.dosage}
+                                  <strong>
+                                    {t("dosageLabel", "Dosage:")}{" "}
+                                  </strong>{" "}
+                                  {item.dosage}
                                 </p>
                                 <p>
-                                  <strong>{t("instructionsLabel", "Instructions:")} </strong>
+                                  <strong>
+                                    {t("instructionsLabel", "Instructions:")}{" "}
+                                  </strong>
                                   {item.instructions}
                                   hours
                                 </p>

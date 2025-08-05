@@ -1,4 +1,20 @@
 {
+  "addPrescriptionTitle": "Add Prescription",
+  "addPrescriptionButton": "Add Prescription",
+  "patientIdLabel": "Patient National ID:",
+  "patientIdPlaceholder": "Enter patient national ID",
+  "patientIdLength": "National ID must be exactly 14 digits",
+  "patientIdRequired": "Patient national ID is required",
+  "medicineNameLabel": "Medicine Name:",
+  "medicineNamePlaceholder": "Enter medicine name",
+  "medicineNameRequired": "Medicine name is required",
+  "dosageLabel": "Dosage",
+  "dosagePlaceholder": "Enter dosage",
+  "dosageRequired": "Dosage is required",
+  "instructionsLabel": "Instructions",
+  "instructionsPlaceholder": "Enter instructions",
+  "instructionsRequired": "Instructions are required",
+  "showHistoryTitle": "Show Patient History",
   "footer": {
     "aboutTitle": "About CareSync",
     "aboutText": "CareSync is committed to providing top-notch healthcare services with convenience and compassion. Our goal is to make healthcare accessible to everyone.",
@@ -27,13 +43,15 @@
     "addPrescription": "Add Patient Prescription",
     "showHistory": "Show Patient History",
     "managePharmacy": "Manage Pharmacy",
+    "adminDashboard": "Admin Dashboard",
     "logout": "Logout",
     "joinUs": "JOIN US",
     "login": "Login",
     "userType": {
       "patient": "Patient",
       "doctor": "Doctor",
-      "pharmacist": "Pharmacist"
+      "pharmacist": "Pharmacist",
+      "admin": "Admin"
     }
   },
   "hero.badge": "WE PROVIDE A COMPREHENSIVE RANGE OF ALL YOUR HEALTHCARE NEEDS",

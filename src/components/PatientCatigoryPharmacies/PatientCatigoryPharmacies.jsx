@@ -23,14 +23,11 @@ export default function PatientCatigoryPharmacies() {
 
   const getCategory = () => {
     axios
-      .get(
-        "http://127.0.0.1:8000/api/pharmacists-categories/",
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "true",
-          },
-        }
-      )
+      .get("http://127.0.0.1:8000/api/pharmacists-categories/", {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
+      })
       .then((response) => {
         setCategory(response.data);
         setLoading(false);
@@ -94,15 +91,25 @@ export default function PatientCatigoryPharmacies() {
                     <div className="d-flex align-items-center">
                       <FaUser className="profile-icon mx-2" />
                       <h5 className="card-title mb-0">
-                        {categoryPharm.full_name ? t("pharmacyCard.pharmacistName", { name: categoryPharm.full_name }) : t("pharmacyCard.noPharmacist", "Pharmacist N/A")}
+                        {categoryPharm.full_name
+                          ? t("pharmacyCard.pharmacistName", {
+                              name: categoryPharm.full_name,
+                            })
+                          : t("pharmacyCard.noPharmacist", "Pharmacist N/A")}
                       </h5>
                     </div>
 
                     <div className="d-flex align-items-center mt-2">
                       <FaStethoscope className="profile-icon mx-2" />
                       <p className="card-text">
-                        <strong>{t("pharmacyCard.pharmacyLabel", "Pharmacy:")} </strong>
-                        {categoryPharm.pharmacy_name ? t("pharmacyCard.pharmacyName", { name: categoryPharm.pharmacy_name }) : t("pharmacyCard.noPharmacy", "N/A")}
+                        <strong>
+                          {t("pharmacyCard.pharmacyLabel", "Pharmacy:")}{" "}
+                        </strong>
+                        {categoryPharm.pharmacy_name
+                          ? t("pharmacyCard.pharmacyName", {
+                              name: categoryPharm.pharmacy_name,
+                            })
+                          : t("pharmacyCard.noPharmacy", "N/A")}
                       </p>
                     </div>
 

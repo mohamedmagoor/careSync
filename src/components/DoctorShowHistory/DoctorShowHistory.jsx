@@ -117,7 +117,9 @@ export default function DoctorShowHistory() {
           </div>
 
           <div className="my-5 prescriptionList">
-            <h3 className="bold h2">{t("prescribedMedicines", "Prescribed Medicines")}</h3>
+            <h3 className="bold h2">
+              {t("prescribedMedicines", "Prescribed Medicines")}
+            </h3>
             <div
               className="accordion accordion-flush shadow-lg"
               id="accordionFlushExample"
@@ -157,10 +159,14 @@ export default function DoctorShowHistory() {
                             {item.medicine_name}
                           </p>
                           <p>
-                            <strong>{t("dosageLabel", "Dosage:")} </strong> {item.dosage}
+                            <strong>{t("dosageLabel", "Dosage:")} </strong>{" "}
+                            {item.dosage}
                           </p>
                           <p>
-                            <strong>{t("instructionsLabel", "Instructions:")} </strong> {item.instructions}
+                            <strong>
+                              {t("instructionsLabel", "Instructions:")}{" "}
+                            </strong>{" "}
+                            {item.instructions}
                           </p>
                         </div>
                       </div>
@@ -168,7 +174,12 @@ export default function DoctorShowHistory() {
                   </div>
                 ))
               ) : (
-                <p>{t("noPrescribedMedicines", "No prescribed medicines found for this patient.")}</p>
+                <p>
+                  {t(
+                    "noPrescribedMedicines",
+                    "No prescribed medicines found for this patient."
+                  )}
+                </p>
               )}
             </div>
           </div>
