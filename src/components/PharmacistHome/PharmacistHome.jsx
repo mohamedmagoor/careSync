@@ -75,21 +75,82 @@ export default function PharmacistHome() {
       {isPageLoading ? (
         <Loading />
       ) : (
-        <div className="container my-5 py-5 text-center">
+        <div className="container my-5 py-4 text-center">
           <div className=" pharmacistHomeContainer pb-5">
-            <div className="pharmacy-info py-3">
-              <h1 className="display-3-md mx-2">
+            <div className="pharmacy-info container mx-auto my-4 p-4">
+              <h1 className="display-3-md mx-2 mb-5">
+                <i className="fas fa-clinic-medical me-2"></i>
                 {pharmacistProfile.pharmacy_name}
               </h1>
-              <div className="d-flex flex-wrap text-start justify-content-between align-items-center mx-2">
-                <p className="bold">
-                  Address : {pharmacistProfile?.pharmacy_address}
-                </p>
-                <p className="bold">Email : {pharmacistProfile?.email}</p>
-                <p className="bold">
-                  Phone : {pharmacistProfile?.phone_number}
-                </p>
-                <p className="bold">{pharmacistProfile?.full_name}</p>
+
+              <div className="row g-3">
+                {" "}
+                {/* Address Card */}
+                <div className="col-md-6">
+                  <div className="card h-100 border-primary">
+                    <div className="card-body text-center p-3">
+                      {" "}
+                      {/* Reduced padding */}
+                      <div className="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-2">
+                        {" "}
+                        {/* Smaller icon container */}
+                        <i className="fas fa-map-marker-alt text-primary fs-4"></i>{" "}
+                        {/* Smaller icon */}
+                      </div>
+                      <h5 className="card-title text-primary mb-2">Address</h5>{" "}
+                      {/* Tighter spacing */}
+                      <p className="card-text mb-0">
+                        {" "}
+                        {/* Removed extra bottom margin */}
+                        {pharmacistProfile?.pharmacy_address || "Not specified"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {/* Email Card */}
+                <div className="col-md-6">
+                  <div className="card h-100 border-success">
+                    <div className="card-body text-center p-3">
+                      <div className="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block mb-2">
+                        <i className="fas fa-envelope text-success fs-4"></i>
+                      </div>
+                      <h5 className="card-title text-success mb-2">Email</h5>
+                      <p className="card-text mb-0">
+                        {pharmacistProfile?.email || "Not specified"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {/* Phone Card */}
+                <div className="col-md-6">
+                  <div className="card h-100 border-info">
+                    <div className="card-body text-center p-3">
+                      <div className="bg-info bg-opacity-10 p-3 rounded-circle d-inline-block mb-2">
+                        <i className="fas fa-phone-alt text-info fs-4"></i>
+                      </div>
+                      <h5 className="card-title text-info mb-2">Phone</h5>
+                      <p className="card-text mb-0">
+                        {pharmacistProfile?.phone_number || "Not specified"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {/* Pharmacist Name Card */}
+                <div className="col-md-6">
+                  <div className="card h-100 border-warning">
+                    <div className="card-body text-center p-3">
+                      <div className="bg-warning bg-opacity-10 p-3 rounded-circle d-inline-block mb-2">
+                        <i className="fas fa-user-md text-warning fs-4"></i>
+                      </div>
+                      <h5 className="card-title text-warning mb-2">
+                        Pharmacist
+                      </h5>
+                      <p className="card-text mb-0">
+                        {pharmacistProfile?.full_name || "Not specified"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -126,7 +187,7 @@ export default function PharmacistHome() {
                 ) : (
                   <button
                     type="submit"
-                    className="btn btn-primary py-2 px-4"
+                    className="btn btn-primary py-2 px-4 border-0"
                     onClick={() => {
                       getMedicineList(inputValue);
                     }}
