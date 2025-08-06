@@ -255,7 +255,10 @@ const MyAppointments = ({ userToken, onBookNew, setError, setLoading }) => {
                 : "No appointments match your current filters."}
             </p>
             {appointments.length === 0 && (
-              <button onClick={onBookNew} className="btn btn-primary">
+              <button
+                onClick={onBookNew}
+                className="btn btn-primary booking-button"
+              >
                 Book Your First Appointment
               </button>
             )}

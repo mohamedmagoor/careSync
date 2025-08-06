@@ -1,3 +1,7 @@
+a {
+  text-decoration: none !important;
+}
+
 /* Modern Navbar Styles */
 .navbar-modern {
   position: sticky;
@@ -86,7 +90,8 @@
 }
 
 /* Patient Navigation Section */
-.patient-nav-section,.doctor-nav-section {
+.patient-nav-section,
+.doctor-nav-section {
   display: flex;
   align-items: center;
   gap: clamp(0.5rem, 2vw, 1rem);
@@ -101,7 +106,8 @@
   flex-wrap: nowrap;
 }
 
-[data-theme="dark"] .patient-nav-section,.doctor-nav-section {
+[data-theme="dark"] .patient-nav-section,
+.doctor-nav-section {
   background: linear-gradient(
     135deg,
     rgba(52, 152, 219, 0.15),
@@ -114,7 +120,7 @@
   position: relative;
   padding: var(--spacing-sm) var(--spacing-md);
   color: var(--text-secondary);
-  text-decoration: none;
+  text-decoration: none !important;
   font-weight: 500;
   font-size: 0.875rem;
   border-radius: var(--radius-md);
@@ -151,10 +157,11 @@
 /* Active navigation state */
 .nav-link.active-nav {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: white;
+  color: white !important;
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
   border: 2px solid rgba(255, 255, 255, 0.2);
+  padding-inline: 4px !important;
 }
 
 .nav-link.active-nav .nav-icon {
@@ -367,7 +374,7 @@
 
 /* Animated hamburger menu */
 .navbar-modern.menu-open .navbar-toggle span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
+  transform: rotate(45deg) translate(8px, 6px);
 }
 
 .navbar-modern.menu-open .navbar-toggle span:nth-child(2) {
@@ -376,7 +383,7 @@
 }
 
 .navbar-modern.menu-open .navbar-toggle span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+  transform: rotate(-45deg) translate(8px, -6px);
 }
 
 /* Responsive Design */
@@ -393,7 +400,8 @@
     gap: clamp(0.5rem, 1.5vw, 1rem);
   }
 
-  .patient-nav-section,.doctor-nav-section {
+  .patient-nav-section,
+  .doctor-nav-section {
     gap: clamp(0.3rem, 1vw, 0.8rem);
     padding: var(--spacing-xs) clamp(0.5rem, 1.5vw, 1rem);
     display: flex;
@@ -419,7 +427,8 @@
     gap: var(--spacing-md);
   }
 
-  .patient-nav-section,.doctor-nav-section {
+  .patient-nav-section,
+  .doctor-nav-section {
     flex-wrap: nowrap;
     justify-content: center;
   }
@@ -435,7 +444,8 @@
 }
 
 @media (max-width: 900px) {
-  .patient-nav-section,.doctor-nav-section {
+  .patient-nav-section,
+  .doctor-nav-section {
     align-items: stretch;
     gap: var(--spacing-xs);
   }
@@ -475,10 +485,12 @@
     border-left: 1px solid var(--border-color);
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start !important;
     padding: 80px var(--spacing-lg) var(--spacing-lg);
     transition: right var(--transition-normal);
     box-shadow: var(--shadow-xl);
     overflow-y: auto;
+    padding-top: 70px !important;
   }
 
   .navbar-menu.active {
@@ -492,7 +504,8 @@
     gap: var(--spacing-md);
   }
 
-  .patient-nav-section,.doctor-nav-section {
+  .patient-nav-section,
+  .doctor-nav-section {
     /* flex-direction: column; */
     gap: var(--spacing-sm);
     padding: var(--spacing-sm);
@@ -521,7 +534,7 @@
     align-items: flex-start;
     width: 100%;
     gap: var(--spacing-lg);
-    margin-top: var(--spacing-lg);
+    /* margin-top: var(--spacing-lg); */
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--border-color);
   }
@@ -554,7 +567,7 @@
   }
 
   /* Mobile menu overlay */
-  .navbar-modern::before {
+  /* .navbar-modern::before {
     content: "";
     position: fixed;
     top: 0;
@@ -566,7 +579,7 @@
     visibility: hidden;
     transition: all var(--transition-normal);
     z-index: 999;
-  }
+  } */
 
   .navbar-modern.menu-open::before {
     opacity: 1;
@@ -611,12 +624,13 @@
   }
 
   .navbar-menu {
-    width: 100%;
+    width: 100% !important;
     right: -100%;
     padding: 60px var(--spacing-sm) var(--spacing-sm);
   }
 
-  .patient-nav-section,.doctor-nav-section {
+  .patient-nav-section,
+  .doctor-nav-section {
     padding: var(--spacing-sm);
     margin-top: 50px;
     display: flex;
@@ -696,16 +710,16 @@
   width: 80%;
 }
 
-
 /* Base styles remain the same */
 
 /* Tablet and below */
 @media (max-width: 1024px) {
-  .patient-nav-section,.doctor-nav-section {
+  .patient-nav-section,
+  .doctor-nav-section {
     gap: 8px;
     padding: 8px;
   }
-  
+
   .nav-link {
     font-size: 0.8rem;
     padding: 8px 12px;
@@ -718,8 +732,9 @@
     height: 60px;
     padding: 0 16px;
   }
-  
-  .patient-nav-section,.doctor-nav-section   {
+
+  .patient-nav-section,
+  .doctor-nav-section {
     flex-direction: column;
     gap: 8px;
     padding: 12px;
@@ -729,22 +744,23 @@
     white-space: nowrap;
     scrollbar-width: thin;
   }
-  
+
   .nav-link {
     width: 100%;
     padding: 12px 16px;
     justify-content: flex-start;
   }
-  
+
   .navbar-actions {
     flex-direction: column;
     gap: 16px;
   }
-  
-  .user-actions, .auth-actions {
+
+  .user-actions,
+  .auth-actions {
     width: 100%;
   }
-  
+
   .logout-btn {
     width: 100%;
   }
@@ -756,24 +772,32 @@
     padding: 0 12px;
     height: 56px;
   }
-  
+
   .brand-text {
     font-size: 1rem;
   }
-  
+
   .navbar-menu {
     width: 85vw;
     padding: 70px 16px 16px;
   }
-  
+
   .nav-link {
     padding: 10px 14px;
     font-size: 0.85rem;
   }
-  
-  .navbar-toggle {
+
+  /* .navbar-toggle {
     width: 40px;
     height: 40px;
+  } */
+  .navbar-toggle {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .navbar-toggle span {
+    height: 2px !important;
   }
 }
 
@@ -782,18 +806,18 @@
   .brand-text {
     display: none;
   }
-  
+
   .brand-logo {
     width: 36px;
     height: 36px;
     margin-right: 0;
   }
-  
+
   .navbar-menu {
     width: 90vw;
     padding: 60px 12px 12px;
   }
-  
+
   .nav-link {
     padding: 8px 12px;
   }
@@ -806,8 +830,9 @@
     overflow-y: auto;
     max-height: 100vh;
   }
-  
-  .patient-nav-section,.doctor-nav-section {
+
+  .patient-nav-section,
+  .doctor-nav-section {
     flex-direction: row;
     flex-wrap: wrap;
   }

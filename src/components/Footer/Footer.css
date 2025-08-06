@@ -169,6 +169,14 @@
   margin-left: 8px;
   margin-right: 0;
 }
+.footer-about-text::before {
+  content: "";
+  width: 0 !important;
+  height: 0 !important;
+  background: var(--primary-500);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -183,11 +191,18 @@
   }
 
   .footer-section h4::after {
-    left: 50%;
+    left: 50% !important;
     transform: translateX(-50%);
   }
 
   .social-icons {
+    justify-content: center;
+  }
+  .footer-section p {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
     justify-content: center;
   }
 }

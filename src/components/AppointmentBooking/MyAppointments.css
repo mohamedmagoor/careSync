@@ -428,6 +428,8 @@
 @media (max-width: 480px) {
   .appointment-card {
     padding: 20px;
+    margin: 0 auto;
+    width: 90% !important;
   }
 
   .appointments-stats {
@@ -456,4 +458,7 @@
     padding: 8px 12px;
     font-size: 0.8rem;
   }
+  /* .booking-button {
+    width: 20% !important;
+  } */
 }

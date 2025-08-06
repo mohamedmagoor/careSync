@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <>
       {/* Language Toggle Button */}
-      <button
+      {/* <button
         onClick={toggleLanguage}
         style={{
           position: "fixed",
@@ -49,7 +49,7 @@ export default function Home() {
         aria-label="Toggle language"
       >
         {i18n.language === "en" ? "العربية" : "English"}
-      </button>
+      </button> */}
       <Helmet>
         <title>CareSync - Your Complete Healthcare Solution</title>
         <meta

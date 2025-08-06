@@ -10,6 +10,8 @@ import {
   FaGenderless,
   FaClinicMedical,
   FaNotesMedical,
+  FaAddressCard,
+  FaRegAddressCard,
 } from "react-icons/fa";
 import { Blocks } from "react-loader-spinner";
 import image from "../../assets/images/patient.jpeg";
@@ -76,9 +78,13 @@ const Profile = () => {
         <div className="dashboard-header w-100">
           <img src={image} alt="Patient" className="profile-photo" />
           <div className="welcome-section text-start">
-            <h1 className="profile-header text-start fw-bolder">Patient Dashboard</h1>
+            <h1 className="profile-header text-start fw-bolder">
+              Patient Dashboard
+            </h1>
             {profile && (
-              <p className="welcome-text fw-bolder">Welcome back, {profile.full_name}!</p>
+              <p className="welcome-text fw-bolder">
+                Welcome back, {profile.full_name}!
+              </p>
             )}
           </div>
         </div>
@@ -114,56 +120,57 @@ const Profile = () => {
             <h2 className="section-title">Your Profile Information</h2>
             <div className="profile-cards">
               <div className="profile-card">
-                <FaUser className="profile-icon" />
+                {/* <FaUser className="profile-icon" /> */}
+                <FaUser className="text-primary fs-3" />
                 <p>
                   <strong>Full Name</strong>
                   <span className="value">{profile.full_name}</span>
                 </p>
               </div>
               <div className="profile-card">
-                <FaAddressBook className="profile-icon" />
+                <FaRegAddressCard className="text-primary fs-3" />
                 <p>
                   <strong>Address</strong>
                   <span className="value">{profile.address}</span>
                 </p>
               </div>
               <div className="profile-card">
-                <FaBirthdayCake className="profile-icon" />
+                <FaBirthdayCake className="text-primary fs-3" />
                 <p>
                   <strong>Birthday</strong>
                   <span className="value">{profile.birthday}</span>
                 </p>
               </div>
               <div className="profile-card">
-                <FaPhone className="profile-icon" />
+                <FaPhone className="text-primary fs-3" />
                 <p>
                   <strong>Phone Number</strong>
                   <span className="value">{profile.phone_number}</span>
                 </p>
               </div>
               <div className="profile-card">
-                <FaEnvelope className="profile-icon" />
+                <FaEnvelope className="text-primary fs-3" />
                 <p>
                   <strong>Email</strong>
                   <span className="value">{profile.email}</span>
                 </p>
               </div>
               <div className="profile-card">
-                <FaGenderless className="profile-icon" />
+                <FaGenderless className="text-primary fs-3" />
                 <p>
                   <strong>Gender</strong>
                   <span className="value">{profile.gender}</span>
                 </p>
               </div>
               <div className="profile-card">
-                <FaClinicMedical className="profile-icon" />
+                <FaClinicMedical className="text-primary fs-3" />
                 <p>
                   <strong>User Type</strong>
                   <span className="value">{profile.user_type}</span>
                 </p>
               </div>
               <div className="profile-card">
-                <FaNotesMedical className="profile-icon" />
+                <FaNotesMedical className="text-primary fs-3" />
                 <p>
                   <strong>Diabetes</strong>
                   <span className="value">
@@ -172,7 +179,7 @@ const Profile = () => {
                 </p>
               </div>
               <div className="profile-card">
-                <FaNotesMedical className="profile-icon" />
+                <FaNotesMedical className="text-primary fs-3" />
                 <p>
                   <strong>Heart Disease</strong>
                   <span className="value">
@@ -181,7 +188,7 @@ const Profile = () => {
                 </p>
               </div>
               <div className="profile-card">
-                <FaNotesMedical className="profile-icon" />
+                <FaNotesMedical className="text-primary fs-3" />
                 <p>
                   <strong>Allergies</strong>
                   <span className="value">
@@ -196,7 +203,7 @@ const Profile = () => {
                 </p>
               </div>
               <div className="profile-card">
-                <FaNotesMedical className="profile-icon" />
+                <FaNotesMedical className="text-primary fs-3" />
                 <p>
                   <strong>Other Diseases</strong>
                   <span className="value">

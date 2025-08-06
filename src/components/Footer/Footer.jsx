@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="footer-container">
           <div className="footer-section">
             <h4>{t("footer.aboutTitle", "About CareSync")}</h4>
-            <p>
+            <p className="footer-about-text">
               {t(
                 "footer.aboutText",
                 "CareSync is committed to providing top-notch healthcare services with convenience and compassion. Our goal is to make healthcare accessible to everyone."

@@ -33,7 +33,6 @@ html {
   overflow: hidden;
 }
 
-
 .profile-photo {
   width: clamp(80px, 15vw, 120px);
   height: clamp(80px, 15vw, 120px);
@@ -61,6 +60,7 @@ html {
   margin: 0 0 10px 0;
   font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  color: white !important;
 }
 
 .welcome-text {

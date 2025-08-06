@@ -1,6 +1,6 @@
 /* Main Container */
 .admin-dashboard {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
@@ -124,7 +124,6 @@ a:hover {
   align-items: center;
   margin-bottom: 30px;
   flex-wrap: wrap;
-
 }
 
 /* Stats Cards */
@@ -181,8 +180,12 @@ a:hover {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive Table Container */
@@ -191,4 +194,9 @@ a:hover {
   border-radius: 8px;
   background: white;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
