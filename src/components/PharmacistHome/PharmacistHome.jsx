@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -8,6 +9,7 @@ import { Blocks } from "react-loader-spinner";
 import { userContext } from "../UserContext/UserContext";
 
 export default function PharmacistHome() {
+  const { t } = useTranslation();
   const [medicineList, setMedicineList] = useState("");
   const [pharmacistProfile, setPharmacistProfile] = useState("");
   const [isLoading, setIsLoading] = useState("");
@@ -181,10 +183,15 @@ export default function PharmacistHome() {
                                   {item.medicine_name}
                                 </p>
                                 <p>
-                                  <strong>Dosage: </strong> {item.dosage}
+                                  <strong>
+                                    {t("dosageLabel", "Dosage:")}{" "}
+                                  </strong>{" "}
+                                  {item.dosage}
                                 </p>
                                 <p>
-                                  <strong>Instructions: </strong>{" "}
+                                  <strong>
+                                    {t("instructionsLabel", "Instructions:")}{" "}
+                                  </strong>
                                   {item.instructions}
                                   hours
                                 </p>

@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
+
+import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -7,6 +9,7 @@ import { Blocks } from "react-loader-spinner";
 import { Helmet } from "react-helmet";
 
 export default function DoctorHome() {
+  const { t } = useTranslation();
   const { userToken } = useContext(userContext);
   const [isLoading, setIsLoading] = useState(false);
   const [apiMessage, setApiMessage] = useState(null);
@@ -14,11 +17,15 @@ export default function DoctorHome() {
 
   const validationSchema = Yup.object({
     patient_id: Yup.string()
-      .length(14, "Patient ID must be exactly 14 characters")
-      .required("Patient ID is required"),
-    medicine_name: Yup.string().required("Medicine name is required"),
-    dosage: Yup.string().required("Dosage is required"),
-    instructions: Yup.string().required("Instructions are required"),
+      .length(14, t("patientIdLength", "National ID must be exactly 14 digits"))
+      .required(t("patientIdRequired", "Patient national ID is required")),
+    medicine_name: Yup.string().required(
+      t("medicineNameRequired", "Medicine name is required")
+    ),
+    dosage: Yup.string().required(t("dosageRequired", "Dosage is required")),
+    instructions: Yup.string().required(
+      t("instructionsRequired", "Instructions are required")
+    ),
   });
 
   const handleSubmit = async (values, { resetForm }) => {
@@ -88,14 +95,21 @@ export default function DoctorHome() {
     return () => clearTimeout(timer);
   }, [apiMessage, apiError]);
 
+  // Set document direction based on language
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
+    document.body.dir = i18n.language === "ar" ? "rtl" : "ltr";
+  }, [i18n.language]);
+
   return (
-    <>
+    <div>
       <Helmet>
-        <title>Add Prescription </title>
+        <title>{t("addPrescriptionTitle", "Add Prescription")}</title>
         <meta name="description" content="easy care Add Prescription page" />
       </Helmet>
       <div className="addForm d-flex flex-column justify-content-center align-items-center text-center">
-        <h1>Add Prescription</h1>
+        <h1>{t("showHistoryTitle", "Show Patient History")}</h1>
         {apiMessage && (
           <div className="alert alert-success" role="alert">
             {apiMessage}
@@ -110,7 +124,9 @@ export default function DoctorHome() {
           <form onSubmit={formik.handleSubmit}>
             {/* Patient ID */}
             <div className="form-group">
-              <label htmlFor="patient_id">Patient ID:</label>
+              <label htmlFor="patient_id">
+                {t("patientIdLabel", "Patient National ID:")}
+              </label>
               <input
                 type="text"
                 id="patient_id"
@@ -119,7 +135,10 @@ export default function DoctorHome() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className="form-control"
-                placeholder="Enter patient ID"
+                placeholder={t(
+                  "patientIdPlaceholder",
+                  "Enter patient national ID"
+                )}
               />
               {formik.touched.patient_id && formik.errors.patient_id ? (
                 <div className="error">{formik.errors.patient_id}</div>
@@ -128,7 +147,9 @@ export default function DoctorHome() {
 
             {/* Medicine Name */}
             <div className="form-group">
-              <label htmlFor="medicine_name">Medicine Name:</label>
+              <label htmlFor="medicine_name">
+                {t("medicineNameLabel", "Medicine Name:")}
+              </label>
               <input
                 type="text"
                 id="medicine_name"
@@ -137,7 +158,10 @@ export default function DoctorHome() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className="form-control"
-                placeholder="Enter medicine name"
+                placeholder={t(
+                  "medicineNamePlaceholder",
+                  "Enter medicine name"
+                )}
               />
               {formik.touched.medicine_name && formik.errors.medicine_name ? (
                 <div className="error">{formik.errors.medicine_name}</div>
@@ -146,7 +170,7 @@ export default function DoctorHome() {
 
             {/* Dosage */}
             <div className="form-group">
-              <label htmlFor="dosage">Dosage:</label>
+              <label htmlFor="dosage">{t("dosageLabel", "Dosage")}</label>
               <input
                 type="text"
                 id="dosage"
@@ -155,7 +179,7 @@ export default function DoctorHome() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className="form-control"
-                placeholder="Enter dosage"
+                placeholder={t("dosagePlaceholder", "Enter dosage")}
               />
               {formik.touched.dosage && formik.errors.dosage ? (
                 <div className="error">{formik.errors.dosage}</div>
@@ -164,7 +188,9 @@ export default function DoctorHome() {
 
             {/* Instructions */}
             <div className="form-group">
-              <label htmlFor="instructions">Instructions:</label>
+              <label htmlFor="instructions">
+                {t("instructionsLabel", "Instructions")}
+              </label>
               <textarea
                 id="instructions"
                 name="instructions"
@@ -172,7 +198,7 @@ export default function DoctorHome() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className="form-control"
-                placeholder="Enter instructions"
+                placeholder={t("instructionsPlaceholder", "Enter instructions")}
               />
               {formik.touched.instructions && formik.errors.instructions ? (
                 <div className="error">{formik.errors.instructions}</div>
@@ -196,12 +222,12 @@ export default function DoctorHome() {
                   visible={true}
                 />
               ) : (
-                "Add Prescription"
+                t("addPrescriptionButton", "Add Prescription")
               )}
             </button>
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }

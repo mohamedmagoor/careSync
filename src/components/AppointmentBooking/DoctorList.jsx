@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import "./DoctorList.css";
 
 const DoctorList = ({ onDoctorSelect, userToken, setError, setLoading }) => {
+  const { t } = useTranslation();
   const [doctors, setDoctors] = useState([]);
   const [filteredDoctors, setFilteredDoctors] = useState([]);
   const [specializations, setSpecializations] = useState([]);
@@ -117,7 +119,11 @@ const DoctorList = ({ onDoctorSelect, userToken, setError, setLoading }) => {
         </div>
       </div>
 
-      <div className={`doctors-grid ${filteredDoctors.length === 0 ? "d-block" : ""}`}>
+      <div
+        className={`doctors-grid ${
+          filteredDoctors.length === 0 ? "d-block" : ""
+        }`}
+      >
         {filteredDoctors.length === 0 ? (
           <div className="no-doctors">
             <div className="no-doctors-icon">👨‍⚕️</div>

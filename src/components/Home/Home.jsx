@@ -1,11 +1,7 @@
 import React from "react";
+import "../../i18n";
 import "./Home.css";
-import { Container, Row, Col, Card, Accordion } from "react-bootstrap";
 import doctorImage from "../../assets/images/doctor.png";
-import doctorIcon from "../../assets/images/banner.png";
-import patientImage from "../../assets/images/patient.png";
-import pharmacistImage from "../../assets/images/pharmacy.png";
-import doctorImage1 from "../../assets/images/doctorI.png";
 import testimonialimg1 from "../../assets/images/doctorTest.jpeg";
 import testimonialimg2 from "../../assets/images/PharmacistTest.jpeg";
 import testimonialimg3 from "../../assets/images/patientTest.jpeg";
@@ -14,10 +10,15 @@ import newsimg2 from "../../assets/images/Designer2.jpeg";
 import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 import { Helmet } from "react-helmet";
 
+import { useTranslation, Trans } from "react-i18next";
+
 export default function Home() {
+  const { t, i18n } = useTranslation();
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === "en" ? "ar" : "en");
+  };
   const settings = {
     dots: true,
     infinite: true,
@@ -30,37 +31,55 @@ export default function Home() {
 
   return (
     <>
+      {/* Language Toggle Button */}
+      <button
+        onClick={toggleLanguage}
+        style={{
+          position: "fixed",
+          top: 16,
+          right: 16,
+          zIndex: 1000,
+          padding: "8px 16px",
+          borderRadius: "20px",
+          border: "1px solid #ccc",
+          background: "#fff",
+          cursor: "pointer",
+          fontWeight: 600,
+        }}
+        aria-label="Toggle language"
+      >
+        {i18n.language === "en" ? "العربية" : "English"}
+      </button>
       <Helmet>
         <title>CareSync - Your Complete Healthcare Solution</title>
-        <meta name="description" content="EasyCare provides comprehensive healthcare services including doctor consultations, patient care, and pharmacy services all in one place." />
+        <meta
+          name="description"
+          content="EasyCare provides comprehensive healthcare services including doctor consultations, patient care, and pharmacy services all in one place."
+        />
       </Helmet>
 
       {/* Hero Section */}
       <div className="hero-container">
         <div className="hero-content">
-          <div className="hero-badge">
-            WE PROVIDE A COMPREHENSIVE RANGE OF ALL YOUR HEALTHCARE NEEDS
-          </div>
+          <div className="hero-badge">{t("hero.badge")}</div>
           <h1>
-            Trusted Specialist
-            <br />
-            for Every <span className="highlight-text">Medical</span>
-            <br />
-            Need
+            <Trans
+              i18nKey="hero.title"
+              components={{
+                br: <br />,
+                span: <span className="highlight-text" />,
+              }}
+            />
           </h1>
-          <p>
-            Experience seamless healthcare with our integrated platform. Connect
-            with doctors, manage prescriptions, and access pharmacy services all
-            in one convenient location.
-          </p>
+          <p>{t("hero.description")}</p>
           <div className="hero-actions">
-            <Link to="/appointment-booking" className="cta-button primary">
+            <Link to="/appointments" className="cta-button primary">
               <i className="fas fa-calendar-plus"></i>
-              Book Appointment
+              {t("hero.bookAppointment")}
             </Link>
             <Link to="/contact" className="cta-button secondary">
               <i className="fas fa-envelope"></i>
-              Contact Us
+              {t("hero.contactUs")}
             </Link>
           </div>
         </div>
@@ -75,13 +94,14 @@ export default function Home() {
           </div>
 
           {/* Floating Cards */}
+
           <div className="floating-card stats-card">
             <div className="card-icon">
               <i className="fas fa-user-md"></i>
             </div>
             <div className="card-content">
               <h3>125+</h3>
-              <p>Trusted Doctors</p>
+              <p>{t("floating.stats", "Trusted Doctors")}</p>
             </div>
           </div>
 
@@ -93,7 +113,7 @@ export default function Home() {
               <i className="fas fa-star"></i>
               <i className="fas fa-star"></i>
             </div>
-            <p>"Excellent service and care!"</p>
+            <p>{t("floating.review", "Excellent service and care!")}</p>
           </div>
 
           <div className="floating-card question-card">
@@ -101,7 +121,7 @@ export default function Home() {
               <i className="fas fa-stethoscope"></i>
             </div>
             <div className="card-content">
-              <p>How are you feeling today?</p>
+              <p>{t("floating.question", "How are you feeling today?")}</p>
             </div>
           </div>
 
@@ -110,7 +130,7 @@ export default function Home() {
               <i className="fas fa-chart-line"></i>
             </div>
             <div className="card-content">
-              <p>Your test results look great!</p>
+              <p>{t("floating.results", "Your test results look great!")}</p>
             </div>
           </div>
 
@@ -119,8 +139,8 @@ export default function Home() {
               <i className="fas fa-user-md"></i>
             </div>
             <div className="card-content">
-              <h4>Alex Miller</h4>
-              <p>Cardiologist</p>
+              <h4>{t("floating.doctorName", "Alex Miller")}</h4>
+              <p>{t("floating.doctorSpecialty", "Cardiologist")}</p>
               <div className="status-indicator"></div>
             </div>
           </div>
@@ -131,11 +151,8 @@ export default function Home() {
       <section className="features-section">
         <div className="container">
           <div className="section-header">
-            <h2>Our Services</h2>
-            <p>
-              Comprehensive healthcare solutions designed to meet all your
-              medical needs
-            </p>
+            <h2>{t("features.title")}</h2>
+            <p>{t("features.description")}</p>
           </div>
 
           <div className="features-grid">
@@ -143,35 +160,24 @@ export default function Home() {
               <div className="feature-icon">
                 <i className="fas fa-user-md"></i>
               </div>
-              <h3>Doctor Services</h3>
-              <p>
-                Connect with specialized doctors for expert consultations and
-                personalized healthcare plans tailored to your needs.
-              </p>
+              <h3>{t("features.doctor.title")}</h3>
+              <p>{t("features.doctor.desc")}</p>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon">
                 <i className="fas fa-user-injured"></i>
               </div>
-              <h3>Patient Care</h3>
-              <p>
-                Comprehensive patient care with modern facilities and
-                compassionate healthcare professionals dedicated to your
-                well-being.
-              </p>
+              <h3>{t("features.patient.title")}</h3>
+              <p>{t("features.patient.desc")}</p>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon">
                 <i className="fas fa-pills"></i>
               </div>
-              <h3>Pharmacy Services</h3>
-              <p>
-                Fully stocked pharmacy with prescription medications,
-                over-the-counter products, and professional pharmaceutical
-                guidance.
-              </p>
+              <h3>{t("features.pharmacy.title")}</h3>
+              <p>{t("features.pharmacy.desc")}</p>
             </div>
           </div>
         </div>
@@ -180,15 +186,10 @@ export default function Home() {
       {/* Call to Action Section */}
       <section className="cta-section">
         <div className="cta-content">
-          <h2 className="cta-heading">
-            Take the First Step Towards Better Health
-          </h2>
-          <p className="cta-text">
-            Join thousands of satisfied patients who trust EasyCare for their
-            healthcare needs. Start your journey to better health today.
-          </p>
+          <h2 className="cta-heading">{t("cta.title")}</h2>
+          <p className="cta-text">{t("cta.text")}</p>
           <Link to="/role">
-            <button className="cta-button">Get Started Now</button>
+            <button className="cta-button">{t("cta.button")}</button>
           </Link>
         </div>
       </section>
@@ -197,11 +198,8 @@ export default function Home() {
       <section className="news-section">
         <div className="container">
           <div className="section-header">
-            <h2>Latest News & Updates</h2>
-            <p>
-              Stay informed about the latest healthcare innovations and service
-              improvements
-            </p>
+            <h2>{t("news.title")}</h2>
+            <p>{t("news.description")}</p>
           </div>
 
           <div className="news-grid">
@@ -212,14 +210,10 @@ export default function Home() {
                 className="news-image"
               />
               <div className="news-content">
-                <h3>Telemedicine Service Now Available</h3>
-                <p>
-                  Our new telemedicine service allows patients to get expert
-                  consultations without leaving their homes, ensuring safety and
-                  convenience.
-                </p>
+                <h3>{t("news.telemedicine.title")}</h3>
+                <p>{t("news.telemedicine.desc")}</p>
                 <Link to="/news/telemedicine">
-                  <button className="news-button">Read More</button>
+                  <button className="news-button">{t("news.readMore")}</button>
                 </Link>
               </div>
             </div>
@@ -231,13 +225,10 @@ export default function Home() {
                 className="news-image"
               />
               <div className="news-content">
-                <h3>Expanded Pharmacy Services</h3>
-                <p>
-                  We are excited to announce expanded pharmacy services with
-                  home delivery options for patients who prefer convenience.
-                </p>
+                <h3>{t("news.pharmacy.title")}</h3>
+                <p>{t("news.pharmacy.desc")}</p>
                 <Link to="/news/pharmacy">
-                  <button className="news-button">Read More</button>
+                  <button className="news-button">{t("news.readMore")}</button>
                 </Link>
               </div>
             </div>
@@ -249,17 +240,13 @@ export default function Home() {
       <section className="testimonials-section">
         <div className="container">
           <div className="section-header">
-            <h2>What Our Clients Say</h2>
-            <p>Hear from our satisfied patients and healthcare professionals</p>
+            <h2>{t("testimonials.title")}</h2>
+            <p>{t("testimonials.description")}</p>
           </div>
 
           <div className="testimonials-grid">
             <div className="testimonial-card">
-              <div className="quote-text">
-                "Amazing service! The doctors are very professional, and I felt
-                cared for throughout the entire process. The convenience of
-                having everything in one place is incredible."
-              </div>
+              <div className="quote-text">{t("testimonials.1.text")}</div>
               <div className="testimonial-author">
                 <img
                   src={testimonialimg1}
@@ -267,18 +254,14 @@ export default function Home() {
                   className="testimonial-avatar"
                 />
                 <div className="author-info">
-                  <h4>John Doe</h4>
-                  <p>Patient</p>
+                  <h4>{t("testimonials.1.name")}</h4>
+                  <p>{t("testimonials.1.role")}</p>
                 </div>
               </div>
             </div>
 
             <div className="testimonial-card">
-              <div className="quote-text">
-                "The healthcare here is exceptional, and the pharmacy service
-                makes everything so convenient. The integrated approach really
-                benefits our patients."
-              </div>
+              <div className="quote-text">{t("testimonials.2.text")}</div>
               <div className="testimonial-author">
                 <img
                   src={testimonialimg2}
@@ -286,18 +269,14 @@ export default function Home() {
                   className="testimonial-avatar"
                 />
                 <div className="author-info">
-                  <h4>Jane Smith</h4>
-                  <p>Pharmacist</p>
+                  <h4>{t("testimonials.2.name")}</h4>
+                  <p>{t("testimonials.2.role")}</p>
                 </div>
               </div>
             </div>
 
             <div className="testimonial-card">
-              <div className="quote-text">
-                "Having all my healthcare needs met in one place makes life so
-                much easier. The staff is friendly and the service is top-notch.
-                Highly recommend!"
-              </div>
+              <div className="quote-text">{t("testimonials.3.text")}</div>
               <div className="testimonial-author">
                 <img
                   src={testimonialimg3}
@@ -305,8 +284,8 @@ export default function Home() {
                   className="testimonial-avatar"
                 />
                 <div className="author-info">
-                  <h4>Emily Johnson</h4>
-                  <p>Patient</p>
+                  <h4>{t("testimonials.3.name")}</h4>
+                  <p>{t("testimonials.3.role")}</p>
                 </div>
               </div>
             </div>
@@ -315,62 +294,35 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="features-section">
+      {/* <section className="features-section">
         <div className="container">
           <div className="section-header">
-            <h2>Frequently Asked Questions</h2>
-            <p>Find answers to common questions about our services</p>
+            <h2>{t('faq.title')}</h2>
+            <p>{t('faq.description')}</p>
           </div>
 
           <div className="faq-container">
             <Accordion>
               <Accordion.Item eventKey="0">
-                <Accordion.Header>
-                  How can I book an appointment?
-                </Accordion.Header>
-                <Accordion.Body>
-                  You can book an appointment online through our website or
-                  mobile app. Simply click "Book Now" and follow the easy steps
-                  to schedule your consultation.
-                </Accordion.Body>
+                <Accordion.Header>{t('faq.1.q')}</Accordion.Header>
+                <Accordion.Body>{t('faq.1.a')}</Accordion.Body>
               </Accordion.Item>
-
               <Accordion.Item eventKey="1">
-                <Accordion.Header>
-                  Are the pharmacy services available 24/7?
-                </Accordion.Header>
-                <Accordion.Body>
-                  Yes, our pharmacy services are available round the clock to
-                  ensure you have access to medications whenever needed, with
-                  emergency services always available.
-                </Accordion.Body>
+                <Accordion.Header>{t('faq.2.q')}</Accordion.Header>
+                <Accordion.Body>{t('faq.2.a')}</Accordion.Body>
               </Accordion.Item>
-
               <Accordion.Item eventKey="2">
-                <Accordion.Header>
-                  How do I contact customer support?
-                </Accordion.Header>
-                <Accordion.Body>
-                  You can reach us via the "Contact Us" page, call our support
-                  hotline, or use our live chat feature for immediate assistance
-                  with any questions or concerns.
-                </Accordion.Body>
+                <Accordion.Header>{t('faq.3.q')}</Accordion.Header>
+                <Accordion.Body>{t('faq.3.a')}</Accordion.Body>
               </Accordion.Item>
-
               <Accordion.Item eventKey="3">
-                <Accordion.Header>
-                  Is telemedicine available for all specialties?
-                </Accordion.Header>
-                <Accordion.Body>
-                  Most of our specialties offer telemedicine consultations.
-                  Check our services page for the complete list of available
-                  online consultations.
-                </Accordion.Body>
+                <Accordion.Header>{t('faq.4.q')}</Accordion.Header>
+                <Accordion.Body>{t('faq.4.a')}</Accordion.Body>
               </Accordion.Item>
             </Accordion>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

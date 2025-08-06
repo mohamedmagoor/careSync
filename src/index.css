@@ -1,3 +1,19 @@
+/* RTL Support for Forms */
+form:dir(rtl) label,
+.form-group:dir(rtl) label {
+  text-align: right;
+  display: block;
+}
+form:dir(rtl) input,
+form:dir(rtl) textarea,
+.form-group:dir(rtl) input,
+.form-group:dir(rtl) textarea {
+  text-align: right;
+}
+form:dir(rtl) .btn,
+.form-group:dir(rtl) .btn {
+  float: right;
+}
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
@@ -224,11 +240,7 @@ body {
   min-height: calc(
     100vh - 140px
   ); /* Adjust based on navbar and footer height */
-  background: linear-gradient(
-    135deg,
-    var(--primary-600) 0%,
-    var(--primary-800) 100%
-  );
+
   /* display: flex;
   align-items: center;
   justify-content: center; */
@@ -244,8 +256,12 @@ h6 {
   font-family: var(--font-family-heading);
   font-weight: 600;
   line-height: 1.2;
-  color: var(--text-primary);
+  color: white;
   margin-bottom: var(--spacing-md);
+  /* background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; */
 }
 
 h1 {

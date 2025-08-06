@@ -9,3 +9,6 @@
 3-pharmacist 
   -national: 23456789012345
   -pass:  StrongPassword123
+4-  admin 
+"national_id": "12345678910200",
+    "password": "Mohamed@123"

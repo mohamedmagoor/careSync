@@ -1,7 +1,6 @@
 /* Modern Contact Form Styles */
 .contactFormContainer {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
   padding: var(--spacing-3xl) var(--spacing-lg);
   position: relative;
   overflow: hidden;

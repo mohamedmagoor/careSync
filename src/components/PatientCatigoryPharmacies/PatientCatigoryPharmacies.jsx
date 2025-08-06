@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { DNA } from "react-loader-spinner";
 import {
@@ -15,20 +16,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Helmet } from "react-helmet";
 
 export default function PatientCatigoryPharmacies() {
+  const { t } = useTranslation();
   const [category, setCategory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedCardIndex, setExpandedCardIndex] = useState(null);
 
   const getCategory = () => {
     axios
-      .get(
-        "http://127.0.0.1:8000/api/pharmacists-categories/",
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "true",
-          },
-        }
-      )
+      .get("http://127.0.0.1:8000/api/pharmacists-categories/", {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
+      })
       .then((response) => {
         setCategory(response.data);
         setLoading(false);
@@ -92,15 +91,25 @@ export default function PatientCatigoryPharmacies() {
                     <div className="d-flex align-items-center">
                       <FaUser className="profile-icon mx-2" />
                       <h5 className="card-title mb-0">
-                        {categoryPharm.full_name || "Pharmacist N/A"}
+                        {categoryPharm.full_name
+                          ? t("pharmacyCard.pharmacistName", {
+                              name: categoryPharm.full_name,
+                            })
+                          : t("pharmacyCard.noPharmacist", "Pharmacist N/A")}
                       </h5>
                     </div>
 
                     <div className="d-flex align-items-center mt-2">
                       <FaStethoscope className="profile-icon mx-2" />
                       <p className="card-text">
-                        <strong>Pharmacy: </strong>{" "}
-                        {categoryPharm.pharmacy_name || "N/A"}
+                        <strong>
+                          {t("pharmacyCard.pharmacyLabel", "Pharmacy:")}{" "}
+                        </strong>
+                        {categoryPharm.pharmacy_name
+                          ? t("pharmacyCard.pharmacyName", {
+                              name: categoryPharm.pharmacy_name,
+                            })
+                          : t("pharmacyCard.noPharmacy", "N/A")}
                       </p>
                     </div>
 

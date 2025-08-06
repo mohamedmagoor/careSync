@@ -27,6 +27,8 @@ import DoctorAppointments from "./components/Doctors/DoctorAppointments";
 import DoctorScheduleManage from "./components/AppointmentBooking/DoctorScheduleManage";
 import DoctorDaysOffManage from "./components/AppointmentBooking/DoctorDaysOffManage";
 import DoctorAvailabilityManagement from "./components/AppointmentBooking/DoctorAvailabilityManagement";
+// Add the import for AdminDashboard
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 
 function App() {
   const routers = createBrowserRouter([
@@ -136,6 +138,15 @@ function App() {
               <DoctorAppointments />
             </ProtectedRoute>
           ) 
+        },
+        // Add the admin dashboard route (no protection here, add if needed)
+        {
+          path: "admin/dashboard",
+          element: (
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          ),
         },
         { path: "forgotPassword", element: <ForgetPassword /> },
         { path: "otp", element: <Otp /> },
