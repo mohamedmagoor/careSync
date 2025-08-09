@@ -14,7 +14,7 @@ The backend includes three main models in `backend/Appointment/models.py`:
 
 ### 2. API Endpoints
 
-Available at `http://localhost:8000/api/appointments/`:
+Available at `https://grackle-notable-hardly.ngrok-free.app/api/appointments/`:
 
 #### Patient Endpoints:
 

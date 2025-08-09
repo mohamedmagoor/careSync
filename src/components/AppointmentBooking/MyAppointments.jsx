@@ -12,11 +12,12 @@ const MyAppointments = ({ userToken, onBookNew, setError, setLoading }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:8000/api/appointments/my-appointments/",
+        "https://grackle-notable-hardly.ngrok-free.app/api/appointments/my-appointments/",
         {
           headers: {
             Authorization: `Bearer ${userToken}`,
             "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true",
           },
         }
       );
@@ -92,7 +93,7 @@ const MyAppointments = ({ userToken, onBookNew, setError, setLoading }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:8000/api/appointments/appointments/${appointmentId}/`,
+        `https://grackle-notable-hardly.ngrok-free.app/api/appointments/appointments/${appointmentId}/`,
         {
           method: "DELETE",
           headers: {

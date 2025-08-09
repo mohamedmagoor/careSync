@@ -19,6 +19,7 @@ const DoctorList = ({ onDoctorSelect, userToken, setError, setLoading }) => {
           headers: {
             Authorization: `Bearer ${userToken}`,
             "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true",
           },
         }
       );

@@ -31,7 +31,7 @@ const DoctorSchedule = ({
         endDate.setDate(startDate.getDate() + 6); // Get 7 days
 
         const response = await fetch(
-          `http://localhost:8000/api/appointments/doctors/${
+          `https://grackle-notable-hardly.ngrok-free.app/api/appointments/doctors/${
             doctor.id
           }/availability/?start_date=${formatDate(
             startDate
@@ -40,6 +40,7 @@ const DoctorSchedule = ({
             headers: {
               Authorization: `Bearer ${userToken}`,
               "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "true",
             },
           }
         );

@@ -1,21 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+
 /* RTL Support for Forms */
 form:dir(rtl) label,
 .form-group:dir(rtl) label {
   text-align: right;
   display: block;
 }
+
 form:dir(rtl) input,
 form:dir(rtl) textarea,
 .form-group:dir(rtl) input,
 .form-group:dir(rtl) textarea {
   text-align: right;
 }
+
 form:dir(rtl) .btn,
 .form-group:dir(rtl) .btn {
   float: right;
 }
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 /* CSS Variables for Light Theme (Default) */
 :root {
@@ -203,6 +207,7 @@ form:dir(rtl) .btn,
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.55),
     0 8px 10px -6px rgb(0 0 0 / 0.45);
 }
+
 */
 
 /* Base Styles */
@@ -237,9 +242,8 @@ body {
 
 .main-content {
   flex: 1;
-  min-height: calc(
-    100vh - 140px
-  ); /* Adjust based on navbar and footer height */
+  min-height: calc(100vh - 140px);
+  /* Adjust based on navbar and footer height */
 
   /* display: flex;
   align-items: center;
@@ -267,18 +271,23 @@ h6 {
 h1 {
   font-size: 2.5rem;
 }
+
 h2 {
   font-size: 2rem;
 }
+
 h3 {
   font-size: 1.75rem;
 }
+
 h4 {
   font-size: 1.5rem;
 }
+
 h5 {
   font-size: 1.25rem;
 }
+
 h6 {
   font-size: 1rem;
 }
@@ -478,6 +487,7 @@ a:hover {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -487,9 +497,11 @@ a:hover {
 .text-center {
   text-align: center;
 }
+
 .text-left {
   text-align: left;
 }
+
 .text-right {
   text-align: right;
 }
@@ -497,18 +509,23 @@ a:hover {
 .mb-0 {
   margin-bottom: 0;
 }
+
 .mb-1 {
   margin-bottom: var(--spacing-xs);
 }
+
 .mb-2 {
   margin-bottom: var(--spacing-sm);
 }
+
 .mb-3 {
   margin-bottom: var(--spacing-md);
 }
+
 .mb-4 {
   margin-bottom: var(--spacing-lg);
 }
+
 .mb-5 {
   margin-bottom: var(--spacing-xl);
 }
@@ -516,18 +533,23 @@ a:hover {
 .mt-0 {
   margin-top: 0;
 }
+
 .mt-1 {
   margin-top: var(--spacing-xs);
 }
+
 .mt-2 {
   margin-top: var(--spacing-sm);
 }
+
 .mt-3 {
   margin-top: var(--spacing-md);
 }
+
 .mt-4 {
   margin-top: var(--spacing-lg);
 }
+
 .mt-5 {
   margin-top: var(--spacing-xl);
 }
@@ -535,18 +557,23 @@ a:hover {
 .p-0 {
   padding: 0;
 }
+
 .p-1 {
   padding: var(--spacing-xs);
 }
+
 .p-2 {
   padding: var(--spacing-sm);
 }
+
 .p-3 {
   padding: var(--spacing-md);
 }
+
 .p-4 {
   padding: var(--spacing-lg);
 }
+
 .p-5 {
   padding: var(--spacing-xl);
 }
@@ -556,9 +583,11 @@ a:hover {
   h1 {
     font-size: 2rem;
   }
+
   h2 {
     font-size: 1.75rem;
   }
+
   h3 {
     font-size: 1.5rem;
   }
@@ -617,6 +646,7 @@ a:hover {
   padding: var(--spacing-xs);
   /* border-radius: var(--radius-md); */
 }
+
 /* 
 [data-theme="dark"] .active {
   background-color: var(--primary-900);
