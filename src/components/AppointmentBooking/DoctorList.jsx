@@ -14,7 +14,7 @@ const DoctorList = ({ onDoctorSelect, userToken, setError, setLoading }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:8000/api/appointments/doctors/",
+        "https://grackle-notable-hardly.ngrok-free.app/api/appointments/doctors/",
         {
           headers: {
             Authorization: `Bearer ${userToken}`,
